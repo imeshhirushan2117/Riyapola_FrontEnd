@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
 import Header from '../../Components/Header/Header'
-import BackgroundImg from '../../common/BackgroundImg/BackgroundImg'
+import BackgroundImg from '../../Components/BackgroundImg/BackgroundImg'
 import { Box } from '@mui/material'
 export default function Home() {
     return (
