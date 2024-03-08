@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.css'
 import Header from '../../Components/Header/Header'
 import BackgroundImg from '../../Components/BackgroundImg/BackgroundImg'
+import Footer from '../../common/Footer/Footer'
 import { Box } from '@mui/material'
 export default function Home() {
     return (
@@ -10,6 +11,7 @@ export default function Home() {
            <Header/>
            </Box>
            <BackgroundImg/>
+          <Footer/>
         </div>
     )
 }
