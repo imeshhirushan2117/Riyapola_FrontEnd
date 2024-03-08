@@ -6,7 +6,7 @@ import { Box } from '@mui/material'
 export default function Home() {
     return (
         <div>
-           <Box sx={{position:"fixed" , zIndex:"100", width:"100%"}} >
+           <Box sx={{position:"fixed" , zIndex:"1000", width:"100%"}} >
            <Header/>
            </Box>
            <BackgroundImg/>
