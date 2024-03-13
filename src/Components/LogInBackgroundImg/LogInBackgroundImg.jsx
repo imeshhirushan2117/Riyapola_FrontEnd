@@ -41,7 +41,7 @@ export default function LogInBackgroundImg() {
                     </Box>
 
                     <Box sx={{padding:"20px"}}>
-                       <Button  name={"Admin LogIn"} width={"100%"} background={'#A50010'} hoverColor={"#800a1e"} onClick={loginAdmin}/>   
+                       <Button  name={"Admin LogIn"} width={"100%"} background={'#A50010'} hoverColor={"#800a1e"} onClick={loginAdmin}/>
                     </Box>
                 </Box>
 

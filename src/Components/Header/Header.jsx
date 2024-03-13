@@ -20,7 +20,7 @@ export default function Header() {
                     </Box>
                     <Box sx={{padding:'12px'}}>
                         <Link to={'/login'}>
-                        <Button name={"Sign In"} width={"120px"} background={'#A50010'} hoverColor={"#800a1e"} onClick={navLoginPage}/>
+                        <Button name={"Admin Sign In"} width={"150px"} background={'#A50010'} hoverColor={"#800a1e"} onClick={navLoginPage}/>
                         </Link>
                     </Box>
                 </Box>
