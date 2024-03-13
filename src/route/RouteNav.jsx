@@ -5,7 +5,8 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 
 const SignOutComponent = () => {
-    console.log("signOut");
+    localStorage.removeItem('stmToken')
+    window.location.reload()
 }
 
 const routesNav = [

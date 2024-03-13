@@ -111,9 +111,10 @@ export default function DrawerNav() {
             <Route key={val.key} path={val.path} element={val.component} />
         )
 
-    const logOut = () => {
-        console.log("log Out");
-    }
+    // const logOut = () => {
+    //     localStorage.removeItem('stmToken')
+    //     window.location.reload()
+    // }
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -137,7 +138,7 @@ export default function DrawerNav() {
                     </Typography>
 
                     <Box sx={{ display: "flex", justifyContent: "end", flexGrow: 12 }}>
-                        <Button name={"Log Out"} width={"100%"} background={'#A50010'} hoverColor={"#800a1e"} onClick={logOut} />
+                        {/* <Button name={"Log Out"} width={"100%"} background={'#A50010'} hoverColor={"#800a1e"} onClick={logOut} /> */}
 
                         <Box sx={{ paddingLeft: "20px" }}>
                             <Avatar alt="Cindy Baker" src={admin_img } />

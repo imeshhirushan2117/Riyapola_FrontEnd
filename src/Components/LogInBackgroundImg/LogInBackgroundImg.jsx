@@ -5,6 +5,8 @@ import SecandFooter from '../../common/SecandFooter/SecandFooter'
 import TextInput from '../../common/TextInput/TextInput'
 import Button from '../../common/Button/Button'
 import instance from '../../services/Axios'
+import Swal from 'sweetalert2'
+
 export default function LogInBackgroundImg() {
 
         const [userName,setUserName] = useState("")
@@ -19,14 +21,25 @@ export default function LogInBackgroundImg() {
           .then(function (response) {
             console.log(response.data.token);
             localStorage.setItem('stmToken', response.data.token);
-            //  window.location.href = '/drawerNav'
             window.location.reload()
-            console.log("login Successfull !");
+            alert("success", "login Successfull !")
+            console.log("login Successfull!");
           })
           .catch(function (error) {
             console.log(error);
-            console.log("login Un Successfull !");
+            // console.log("login Un Successfull !");
+            alert("error", "Login Unsuccessful!")
           }); 
+    }
+
+    const alert = (icon, title) => {
+        Swal.fire({
+            position: "top-end",
+            icon: icon,
+            title: title,
+            showConfirmButton: false,
+            timer: 1500
+        });
     }
 
     return (
