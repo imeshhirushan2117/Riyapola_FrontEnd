@@ -16,8 +16,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import Button from '../../common/Button/Button'
 
 import { Route, Routes, Link, Navigate } from 'react-router-dom'
 import routesNav from '../../route/RouteNav';
@@ -112,6 +111,9 @@ export default function DrawerNav() {
         )
 
 
+    const logOut = () => {
+        console.log("log Out");
+    }
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -130,9 +132,13 @@ export default function DrawerNav() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div" sx={{color:'red' , fontWeight:"bold" , fontSize:"20px"}}>
-                      <span style={{color:"white"}}>Riyapola</span> Admin Panel
+                    <Typography variant="h6" noWrap component="div" sx={{ color: 'red', fontWeight: "bold", fontSize: "20px" }}>
+                        <span style={{ color: "white" }}>Riyapola</span> Admin Panel
                     </Typography>
+
+                    <Box sx={{display:"flex" , justifyContent:"end" , flexGrow: 12}}>
+                       <Button  name={"Log Out"} width={"100%"} background={'#A50010'} hoverColor={"#800a1e"} onClick={logOut}/>
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
