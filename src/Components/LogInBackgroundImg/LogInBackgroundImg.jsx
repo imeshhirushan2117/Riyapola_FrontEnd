@@ -1,14 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import logIn_img from '../../assets/img/logIn.jpg'
 import SecandFooter from '../../common/SecandFooter/SecandFooter'
 import TextInput from '../../common/TextInput/TextInput'
 import Button from '../../common/Button/Button'
-
+import instance from '../../services/Axios'
 export default function LogInBackgroundImg() {
 
+        const [userName,setUserName] = useState("")
+        const [password,setPassword] = useState("")
+
+
     const loginAdmin  = () => {
-        console.log("adminLogin")
+        instance.post('/adminLogin/login', {
+            userName: userName,
+            password: password
+          })
+          .then(function (response) {
+            console.log(response.data.token);
+            localStorage.setItem('stmToken', response.data.token);
+            //  window.location.href = '/drawerNav'
+            window.location.reload()
+            console.log("login Successfull !");
+          })
+          .catch(function (error) {
+            console.log(error);
+            console.log("login Un Successfull !");
+          }); 
     }
 
     return (
@@ -17,9 +35,7 @@ export default function LogInBackgroundImg() {
                 display: "flex",
                 justifyContent: "center",
             }}>
-
-
-                <Box sx={{
+               <Box sx={{
                     position: "absolute",
                     zIndex: "100",
                     background: "white",
@@ -36,8 +52,8 @@ export default function LogInBackgroundImg() {
                     </Box>
 
                     <Box>
-                        <TextInput width={"100%"} label={"Email Or UserName"} type={'email'} onChange={(val) => console.log(val.target.value)} />
-                        <TextInput width={"100%"} label={"Password"} type={'password'} onChange={(val) => console.log(val.target.value)} />
+                        <TextInput width={"100%"} label={"Email Or UserName"} type={'email'}  onChange={(val) => setUserName(val.target.value)} />
+                        <TextInput width={"100%"} label={"Password"} type={'password'} onChange={(val) => setPassword(val.target.value)} />
                     </Box>
 
                     <Box sx={{padding:"20px"}}>
@@ -46,8 +62,6 @@ export default function LogInBackgroundImg() {
                 </Box>
 
             </Box>
-
-
 
             <Box sx={{ background: "black" }}>
                 <img style={{ width: "100%", opacity: "50%" }} src={logIn_img} alt="" />

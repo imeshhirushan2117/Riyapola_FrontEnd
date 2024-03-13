@@ -4,18 +4,37 @@ import LogIn from '../pages/LogIn/LogIn'
 import SecandFooter from '../common/SecandFooter/SecandFooter'
 import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import DrawerNav from '../Components/DrawerNav/DrawerNav'
+import { useEffect, useState } from 'react'
 
 function App() {
+
+  const [login, setLogin] = useState(false);
+
+  useEffect(() => {
+    const key = localStorage.getItem('stmToken');
+    if (key !== null) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  }, []);
+
   return (
-    // <Routes>
-    //   <Route path='*' element={<Navigate to={'/home'} />}/>
-    //   <Route path={'/home'} element={<Home />} />
-    //   <Route path={'/login'} element={<LogIn />} />
-    // </Routes>
+    <>
+      {login ?(
+          <DrawerNav />
+      ):(
+          <Routes>
+            <Route path='*' element={<Navigate to={'/home'} />} />
+            <Route path={'/home'} element={<Home />} />
+            <Route path={'/login'} element={<LogIn />} />
+          </Routes>
 
-    <DrawerNav/>
+      )}
+    </>
 
-  )
+
+  );
 }
 
 export default App
