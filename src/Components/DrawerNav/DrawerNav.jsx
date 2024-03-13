@@ -20,6 +20,7 @@ import Button from '../../common/Button/Button'
 
 import { Route, Routes, Link, Navigate } from 'react-router-dom'
 import routesNav from '../../route/RouteNav';
+import Avatar from '@mui/material/Avatar';
 
 
 export default function DrawerNav() {
@@ -110,7 +111,6 @@ export default function DrawerNav() {
             <Route key={val.key} path={val.path} element={val.component} />
         )
 
-
     const logOut = () => {
         console.log("log Out");
     }
@@ -136,8 +136,12 @@ export default function DrawerNav() {
                         <span style={{ color: "white" }}>Riyapola</span> Admin Panel
                     </Typography>
 
-                    <Box sx={{display:"flex" , justifyContent:"end" , flexGrow: 12}}>
-                       <Button  name={"Log Out"} width={"100%"} background={'#A50010'} hoverColor={"#800a1e"} onClick={logOut}/>
+                    <Box sx={{ display: "flex", justifyContent: "end", flexGrow: 12 }}>
+                        <Button name={"Log Out"} width={"100%"} background={'#A50010'} hoverColor={"#800a1e"} onClick={logOut} />
+
+                        <Box sx={{ paddingLeft: "20px" }}>
+                            <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+                        </Box>
                     </Box>
                 </Toolbar>
             </AppBar>
