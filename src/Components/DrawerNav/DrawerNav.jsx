@@ -21,7 +21,7 @@ import Button from '../../common/Button/Button'
 import { Route, Routes, Link, Navigate } from 'react-router-dom'
 import routesNav from '../../route/RouteNav';
 import Avatar from '@mui/material/Avatar';
-
+import admin_img from '../../assets/img/admin.png'
 
 export default function DrawerNav() {
 
@@ -140,7 +140,7 @@ export default function DrawerNav() {
                         <Button name={"Log Out"} width={"100%"} background={'#A50010'} hoverColor={"#800a1e"} onClick={logOut} />
 
                         <Box sx={{ paddingLeft: "20px" }}>
-                            <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+                            <Avatar alt="Cindy Baker" src={admin_img } />
                         </Box>
                     </Box>
                 </Toolbar>
