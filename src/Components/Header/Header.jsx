@@ -3,6 +3,11 @@ import './styles.css'
 import { Box ,Typography } from '@mui/material';
 import Button from '../../common/Button/Button';
 export default function Header() {
+
+    const navLoginPage  = () => {
+        console.log("navLoginPage")
+    }
+
     return (
         <div>
             <Box sx={{ height: '70px', width: '100%', background: 'black' }}>
@@ -13,7 +18,7 @@ export default function Header() {
                         </Typography>
                     </Box>
                     <Box sx={{padding:'12px'}}>
-                        <Button name={"LogIn"} width={"120px"} background={'#A50010'} hoverColor={"#800a1e"}/>
+                        <Button name={"LogIn"} width={"120px"} background={'#A50010'} hoverColor={"#800a1e"} onClick={navLoginPage}/>
                     </Box>
                 </Box>
             </Box>

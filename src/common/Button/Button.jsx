@@ -3,7 +3,7 @@ import './styles.css'
 import { Box, Button } from '@mui/material'
 import { styled } from '@mui/material/styles';
 
-export default function myButton({name,width,background,hoverColor}) {
+export default function myButton({name,width,background,hoverColor,onClick}) {
 
     const ColorButton = styled(Button)(({ theme }) => ({
         color: theme.palette.getContrastText(background),
@@ -15,7 +15,7 @@ export default function myButton({name,width,background,hoverColor}) {
 
   return (
     <Box>
-        <ColorButton sx={{width:{width}}} variant="contained">{name}</ColorButton>
+        <ColorButton onClick={onClick} sx={{width:{width}}} variant="contained">{name}</ColorButton>
     </Box>
   )
 }
