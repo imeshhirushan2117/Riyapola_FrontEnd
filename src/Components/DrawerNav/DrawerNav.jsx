@@ -22,12 +22,11 @@ import { Route, Routes, Link, Navigate } from 'react-router-dom'
 import routesNav from '../../route/RouteNav';
 import Avatar from '@mui/material/Avatar';
 import admin_img from '../../assets/img/admin.png'
+import Swal from 'sweetalert2';
+
 
 export default function DrawerNav() {
-
-
     const drawerWidth = 240;
-
     const openedMixin = (theme) => ({
         width: drawerWidth,
         transition: theme.transitions.create('width', {
@@ -111,10 +110,21 @@ export default function DrawerNav() {
             <Route key={val.key} path={val.path} element={val.component} />
         )
 
-    // const logOut = () => {
-    //     localStorage.removeItem('stmToken')
-    //     window.location.reload()
-    // }
+    const logOut = () => {
+        localStorage.removeItem('stmToken')
+         window.location.reload()
+        alert("success", "log Out Successfull !")
+    }
+
+    const alert = (icon, title) => {
+        Swal.fire({
+            position: "top-end",
+            icon: icon,
+            title: title,
+            showConfirmButton: false,
+            timer: 3000
+        });
+    }
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -138,9 +148,9 @@ export default function DrawerNav() {
                     </Typography>
 
                     <Box sx={{ display: "flex", justifyContent: "end", flexGrow: 12 }}>
-                        {/* <Button name={"Log Out"} width={"100%"} background={'#A50010'} hoverColor={"#800a1e"} onClick={logOut} /> */}
+                        <Button name={"Log Out"} width={"100%"} background={'#A50010'} hoverColor={"#800a1e"} onClick={logOut} />
 
-                        <Box sx={{ paddingLeft: "20px" }}>
+                        <Box sx={{ paddingLeft: "20px" , cursor:'pointer'}}>
                             <Avatar alt="Cindy Baker" src={admin_img } />
                         </Box>
                     </Box>

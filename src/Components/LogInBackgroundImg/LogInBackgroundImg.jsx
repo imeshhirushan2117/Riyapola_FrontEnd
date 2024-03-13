@@ -12,24 +12,30 @@ export default function LogInBackgroundImg() {
         const [userName,setUserName] = useState("")
         const [password,setPassword] = useState("")
 
-
     const loginAdmin  = () => {
-        instance.post('/adminLogin/login', {
-            userName: userName,
-            password: password
-          })
-          .then(function (response) {
-            console.log(response.data.token);
-            localStorage.setItem('stmToken', response.data.token);
-            window.location.reload()
-            alert("success", "login Successfull !")
-            console.log("login Successfull!");
-          })
-          .catch(function (error) {
-            console.log(error);
-            // console.log("login Un Successfull !");
-            alert("error", "Login Unsuccessful!")
-          }); 
+
+            if(userName != null && password != null){
+                instance.post('/adminLogin/login', {
+                    userName: userName,
+                    password: password
+                  })
+                  .then(function (response) {
+                    console.log(response.data.token);
+                    localStorage.setItem('stmToken', response.data.token);
+                     window.location.reload()
+                    console.log(userName);
+                    console.log(password);
+                    alert("success", "login Success!")
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                    alert("error", "Login Unsuccess!")
+                  });
+            }else{
+                alert("error", "Login Unsuccess!")
+            }
+
+      
     }
 
     const alert = (icon, title) => {
@@ -65,8 +71,8 @@ export default function LogInBackgroundImg() {
                     </Box>
 
                     <Box>
-                        <TextInput width={"100%"} label={"Email Or UserName"} type={'email'}  onChange={(val) => setUserName(val.target.value)} />
-                        <TextInput width={"100%"} label={"Password"} type={'password'} onChange={(val) => setPassword(val.target.value)} />
+                        <TextInput width={"100%"} label={"Email Or UserName"} type={'email'} value={userName} onChange={(val) => setUserName(val.target.value)} />
+                        <TextInput width={"100%"} label={"Password"} value={password} type={'password'} onChange={(val) => setPassword(val.target.value)} />
                     </Box>
 
                     <Box sx={{padding:"20px"}}>
