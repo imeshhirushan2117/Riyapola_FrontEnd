@@ -21,16 +21,16 @@ function App() {
 
   return (
     <>
-      {login ?(
+      {login ?
           <DrawerNav />
-      ):(
+      :
           <Routes>
             <Route path='*' element={<Navigate to={'/home'} />} />
             <Route path={'/home'} element={<Home />} />
             <Route path={'/login'} element={<LogIn />} />
           </Routes>
 
-      )}
+      }
     </>
 
 
