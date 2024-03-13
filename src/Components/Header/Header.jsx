@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.css'
 import { Box ,Typography } from '@mui/material';
 import Button from '../../common/Button/Button';
+import {Link} from 'react-router-dom'
 export default function Header() {
 
     const navLoginPage  = () => {
@@ -18,7 +19,9 @@ export default function Header() {
                         </Typography>
                     </Box>
                     <Box sx={{padding:'12px'}}>
-                        <Button name={"LogIn"} width={"120px"} background={'#A50010'} hoverColor={"#800a1e"} onClick={navLoginPage}/>
+                        <Link to={'/login'}>
+                        <Button name={"Sign In"} width={"120px"} background={'#A50010'} hoverColor={"#800a1e"} onClick={navLoginPage}/>
+                        </Link>
                     </Box>
                 </Box>
             </Box>
