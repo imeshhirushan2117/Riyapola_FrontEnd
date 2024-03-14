@@ -5,8 +5,25 @@ import TextInput from '../../common/TextInput/TextInput';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '../../common/Button/Button'
+import { DataGrid } from '@mui/x-data-grid';
 
 export default function AdminAction() {
+
+
+  const columns = [
+
+    { field: 'firstName', headerName: 'First name', width: 200 },
+    { field: 'lastName', headerName: 'Last name', width: 200 },
+    { field: 'email', headerName: 'Email', width: 300 },
+    { field: 'role', headerName: 'Role', width:150 },
+    { field: 'action', headerName: 'Action', width:300 }
+
+  ];
+
+  const rows = [
+    { id: 1,  firstName:'Imesh', lastName: 'Hirushan',email : "imeshhirushan@gmail.com" , role:"Admin" , action:""}  
+  ];
+
 
   return (
     <Box>
@@ -53,7 +70,7 @@ export default function AdminAction() {
         </Grid>
       </Box>
 
-      <Box sx={{display:"flex" , alignItems:"center" , justifyContent:"end" , gap:"10px" ,flexWrap:"wrap"}}>
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "end", gap: "10px", flexWrap: "wrap" }}>
         <Box>
           <Button name={"Clear"} width={"200px"} background={'#f39c12'} hoverColor={"#f1c40f"} />
         </Box>
@@ -61,7 +78,23 @@ export default function AdminAction() {
         <Box>
           <Button name={"Save"} width={"200px"} background={'#16a085'} hoverColor={"#1abc9c"} />
         </Box>
+      </Box>
 
+
+      <Box sx={{marginTop:"30px"}}>
+        <div style={{ height: 400, width: '100%' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 5 },
+              },
+            }}
+            pageSizeOptions={[5, 10]}
+            checkboxSelection
+          />
+        </div>
       </Box>
     </Box>
   )
