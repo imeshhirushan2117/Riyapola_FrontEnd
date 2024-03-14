@@ -1,4 +1,4 @@
-import React, { isValidElement, useState } from 'react'
+import React, { isValidElement, useState ,useEffect} from 'react'
 import { Box } from '@mui/material'
 import Grid from '@mui/material/Grid';
 import TextInput from '../../common/TextInput/TextInput';
@@ -9,15 +9,24 @@ import { DataGrid } from '@mui/x-data-grid';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import instance from '../../services/Axios';
+
 export default function AdminAction() {
 
+
+  const [data, setData] = useState("");
+
+  
+  useEffect(() => {
+    getAllAdmin(setData)
+  }, []);
 
   const columns = [
 
     { field: 'firstName', headerName: 'First name', width: 250 },
     { field: 'lastName', headerName: 'Last name', width: 250 },
     { field: 'email', headerName: 'Email', width: 300 },
-    { field: 'role', headerName: 'Role', width:200 },
+    { field: 'role', headerName: 'Role', width: 200 },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -27,31 +36,54 @@ export default function AdminAction() {
           <IconButton
             color='info'
             aria-label="edit"
-            onClick={() => {editPopup(params.row)}}
+            onClick={() => { editPopup(params.row) }}
           >
-          <EditIcon />
+            <EditIcon />
           </IconButton>
 
           <IconButton
             color='error'
             aria-label="delete"
-            onClick={() => {deleted(params.row)}}
+            onClick={() => { deleted(params.row) }}
           >
             <DeleteIcon />
           </IconButton>
 
         </div>
-      ),     
+      ),
     },
-
   ];
 
-  const rows = [
-    { id: 1,  firstName:'Imesh', lastName: 'Hirushan',email : "imeshhirushan@gmail.com" , role:"Admin" , action:""}  
-  ];
+  const getAllAdmin = () => {
+    instance.get('/getAllAdmin/getAll')
+      .then(function (response) {
+        console.log(response);
+        const array = [];
+        response.data.forEach(val => {
+          array.push({
+            firstName: val.firstName,
+            lastName: val.lastName,
+            email: val.userName,
+            role: val.role
+          })
+        })
+        setData(array)
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  }
+
+  // const rows = [
+  //   { id: 1,  firstName:'Imesh', lastName: 'Hirushan',email : "imeshhirushan@gmail.com" , role:"Admin" , action:""}  
+  // ];
 
   const clear = () => {
-      console.log("clear");
+    console.log("clear");
   }
 
   const save = () => {
@@ -113,26 +145,26 @@ export default function AdminAction() {
 
       <Box sx={{ display: "flex", alignItems: "center", justifyContent: "end", gap: "10px", flexWrap: "wrap" }}>
         <Box>
-          <Button name={"Clear"} width={"200px"} background={'#f39c12'} hoverColor={"#f1c40f"}  onClick={clear}/>
+          <Button name={"Clear"} width={"200px"} background={'#f39c12'} hoverColor={"#f1c40f"} onClick={clear} />
         </Box>
 
         <Box>
-          <Button name={"Save"} width={"200px"} background={'#16a085'} hoverColor={"#1abc9c"} onClick={save}/>
+          <Button name={"Save"} width={"200px"} background={'#16a085'} hoverColor={"#1abc9c"} onClick={save} />
         </Box>
       </Box>
 
 
-      <Box sx={{marginTop:"30px"}}>
+      <Box sx={{ marginTop: "30px" }}>
         <div style={{ height: 400, width: '100%' }}>
           <DataGrid
-            rows={rows}
+            rows={data}
             columns={columns}
             initialState={{
               pagination: {
                 paginationModel: { page: 0, pageSize: 10 },
               },
             }}
-            pageSizeOptions={[10 , 20]}
+            pageSizeOptions={[10, 20]}
           />
         </div>
       </Box>
