@@ -1,6 +1,6 @@
 import './App.css'
 import Home from '../pages/Home/Home'
-import LogIn from '../pages/LogIn/LogIn'
+import LogInPage from '../pages/LogIn/LogIn'
 import SecandFooter from '../common/SecandFooter/SecandFooter'
 import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import DrawerNav from '../Components/DrawerNav/DrawerNav'
@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react'
 import AdminAction from '../pages/AdminAction/AdminAction'
 
 function App() {
-
   const [login, setLogin] = useState(false);
 
   useEffect(() => {
@@ -18,25 +17,22 @@ function App() {
     } else {
       setLogin(false);
     }
-  }, []);
+  }, [])
 
   return (
     <>
-      {login ?
+      {
+        login ?
           <DrawerNav />
-      :
+          :
           <Routes>
             <Route path='*' element={<Navigate to={'/home'} />} />
             <Route path={'/home'} element={<Home />} />
-            <Route path={'/login'} element={<LogIn />} />
+            <Route path={'/loginPage'} element={<LogInPage />} />
           </Routes>
-
       }
-
       {/* <AdminAction/> */}
     </>
-
-
   );
 }
 

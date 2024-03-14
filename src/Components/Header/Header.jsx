@@ -5,10 +5,6 @@ import Button from '../../common/Button/Button';
 import {Link} from 'react-router-dom'
 export default function Header() {
 
-    const navLoginPage  = () => {
-        console.log("navLoginPage")
-    }
-
     return (
         <div>
             <Box sx={{ height: '70px', width: '100%', background: 'black' }}>
@@ -19,8 +15,8 @@ export default function Header() {
                         </Typography>
                     </Box>
                     <Box sx={{padding:'12px'}}>
-                        <Link to={'/login'}>
-                        <Button name={"Admin Sign In"} width={"150px"} background={'#A50010'} hoverColor={"#800a1e"} onClick={navLoginPage}/>
+                        <Link to={'/loginPage'}>
+                        <Button name={"Admin Sign In"} width={"150px"} background={'#A50010'} hoverColor={"#800a1e"} />
                         </Link>
                     </Box>
                 </Box>

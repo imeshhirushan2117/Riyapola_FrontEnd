@@ -111,9 +111,9 @@ export default function DrawerNav() {
         )
 
     const logOut = () => {
-        localStorage.removeItem('stmToken')
-         window.location.reload()
-        alert("success", "log Out Successfull !")
+         localStorage.removeItem('stmToken')
+          window.location.reload()
+         alert("success", "log Out Successfull !")
     }
 
     const alert = (icon, title) => {
