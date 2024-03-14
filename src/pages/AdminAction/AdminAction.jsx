@@ -6,17 +6,43 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '../../common/Button/Button'
 import { DataGrid } from '@mui/x-data-grid';
-
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 export default function AdminAction() {
 
 
   const columns = [
 
-    { field: 'firstName', headerName: 'First name', width: 200 },
-    { field: 'lastName', headerName: 'Last name', width: 200 },
+    { field: 'firstName', headerName: 'First name', width: 250 },
+    { field: 'lastName', headerName: 'Last name', width: 250 },
     { field: 'email', headerName: 'Email', width: 300 },
-    { field: 'role', headerName: 'Role', width:150 },
-    { field: 'action', headerName: 'Action', width:300 }
+    { field: 'role', headerName: 'Role', width:200 },
+    {
+      field: 'actions',
+      headerName: 'Actions',
+      width: 150,
+      renderCell: (params) => (
+        <div>
+          <IconButton
+            color='info'
+            aria-label="edit"
+            onClick={() => {editPopup(params.row)}}
+          >
+          <EditIcon />
+          </IconButton>
+
+          <IconButton
+            color='error'
+            aria-label="delete"
+            onClick={() => {deleted(params.row)}}
+          >
+            <DeleteIcon />
+          </IconButton>
+
+        </div>
+      ),     
+    },
 
   ];
 
@@ -24,6 +50,21 @@ export default function AdminAction() {
     { id: 1,  firstName:'Imesh', lastName: 'Hirushan',email : "imeshhirushan@gmail.com" , role:"Admin" , action:""}  
   ];
 
+  const clear = () => {
+      console.log("clear");
+  }
+
+  const save = () => {
+    console.log("save");
+  }
+
+  const editPopup = () => {
+    console.log("edit");
+  }
+
+  const deleted = () => {
+    console.log("deleted");
+  }
 
   return (
     <Box>
@@ -72,11 +113,11 @@ export default function AdminAction() {
 
       <Box sx={{ display: "flex", alignItems: "center", justifyContent: "end", gap: "10px", flexWrap: "wrap" }}>
         <Box>
-          <Button name={"Clear"} width={"200px"} background={'#f39c12'} hoverColor={"#f1c40f"} />
+          <Button name={"Clear"} width={"200px"} background={'#f39c12'} hoverColor={"#f1c40f"}  onClick={clear}/>
         </Box>
 
         <Box>
-          <Button name={"Save"} width={"200px"} background={'#16a085'} hoverColor={"#1abc9c"} />
+          <Button name={"Save"} width={"200px"} background={'#16a085'} hoverColor={"#1abc9c"} onClick={save}/>
         </Box>
       </Box>
 
@@ -88,11 +129,10 @@ export default function AdminAction() {
             columns={columns}
             initialState={{
               pagination: {
-                paginationModel: { page: 0, pageSize: 5 },
+                paginationModel: { page: 0, pageSize: 10 },
               },
             }}
-            pageSizeOptions={[5, 10]}
-            checkboxSelection
+            pageSizeOptions={[10 , 20]}
           />
         </div>
       </Box>
