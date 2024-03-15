@@ -19,8 +19,8 @@ export default function LogInBackgroundImg() {
             password: password
         })
             .then(function (response) {
-                console.log(response.data);
-                localStorage.setItem('stmToken', response.data);
+                console.log(response.data.token);
+                localStorage.setItem('stmToken', response.data.token);
                 window.location.reload()
                 alert("success", "login Success!")
             })
@@ -33,7 +33,7 @@ export default function LogInBackgroundImg() {
 
     const alert = (icon, title) => {
         Swal.fire({
-            position: "top-end",
+            position: "top-center",
             icon: icon,
             title: title,
             showConfirmButton: false,

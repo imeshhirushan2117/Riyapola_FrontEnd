@@ -57,13 +57,16 @@ export default function AdminAction() {
   const getAllAdmin = () => {
     instance.get('/getAllAdmin/getAll')
     .then(function (response) {
-      console.log(response);
-      const array = response.data.map(val => ({
+     
+      const array = response.data.map((val,index) => ({
+        id:index,
         firstName: val.firstName,
         lastName: val.lastName,
         email: val.userName,
         role: val.role
       }));
+
+      console.log("login data",array);
       setData(array);
     })
     .catch(function (error) {
@@ -86,6 +89,8 @@ export default function AdminAction() {
   const deleted = () => {
     console.log("deleted");
   }
+
+
 
   return (
     <Box>

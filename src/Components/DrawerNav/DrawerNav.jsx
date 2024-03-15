@@ -118,7 +118,7 @@ export default function DrawerNav() {
 
     const alert = (icon, title) => {
         Swal.fire({
-            position: "top-end",
+            position: "top-center",
             icon: icon,
             title: title,
             showConfirmButton: false,
