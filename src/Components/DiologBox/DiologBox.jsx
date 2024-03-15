@@ -8,38 +8,17 @@ import Button from '../../common/Button/Button'
 import { useState } from 'react';
 import instance from '../../services/Axios'
 
-export default function DiologBox({ handleClose, open , cancel , }) {
+export default function DiologBox({ handleClose, open , closeBtn , updateData }) {
 
-    // console.log(update);
+     console.log(updateData);
     
-    const [firstName, setFirstname] = useState("")
-    const [lastName, setLastname] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-  
+    const [firstName, setFirstname] = useState(updateData?.firstName)
+    const [lastName, setLastname] = useState(updateData?.lastName)
+    const [email, setEmail] = useState(updateData?.email)
+    const [password, setPassword] = useState(updateData?.password)
 
-    const Transition = React.forwardRef(function Transition(props, ref) {
-        return <Slide direction="up" ref={ref} {...props} />;
-    });
-
-    const update = (id) => {
-        // instance.put('/updateAdmin/'+updateData.id, {
-        //     firstName: firstName,
-        //     lastName: lastName,
-        //     userName: email,
-        //     password: password,
-        //     role: "role",
-        //   })
-      
-      
-        //     .then((response) => {
-        //       changeUpdate()
-        //         AlertComponent('success','Success...', 'Student Update Success!')
-        //     })
-        //     .catch((error) => {
-        //       AlertComponent('error','Oops...', 'Something went wrong!')
-        //       console.error(error);
-        //     });
+    const update = () => {
+        
     }
 
     return (
@@ -78,7 +57,7 @@ export default function DiologBox({ handleClose, open , cancel , }) {
                     </Box>
 
                     <Box sx={{ margin: "10px" }}>
-                        <Button name={"Cancle"} width={"225px"} background={'#c0392b'} hoverColor={"#e74c3c"} onClick={cancel} />
+                        <Button name={"Cancle"} width={"225px"} background={'#c0392b'} hoverColor={"#e74c3c"} onClick={closeBtn} />
                     </Box>
                 </Box>
 

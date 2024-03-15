@@ -168,8 +168,8 @@ export default function AdminAction() {
     });
   }
 
-  const cancelBtn = () => {
-    setPopup(false)
+  const closeBtn = () => {
+    setOpen(false)
   }
 
   return (
@@ -243,7 +243,7 @@ export default function AdminAction() {
             pageSizeOptions={[10, 20]}
           />
           {open &&
-            <DiologBox open={open} handleClose={handleClose} cancel={cancelBtn} updateData={updateData} />
+            <DiologBox open={open} handleClose={handleClose} closeBtn={closeBtn} updateData={updateData} />
           }
         </div>
       </Box>
