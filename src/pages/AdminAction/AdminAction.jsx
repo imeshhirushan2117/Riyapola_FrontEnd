@@ -44,7 +44,7 @@ export default function AdminAction() {
           <IconButton
             color='error'
             aria-label="delete"
-            onClick={() => { deleted(params.row) }}
+            onClick={() => { deleted(params.row.id) }}
           >
             <DeleteIcon />
           </IconButton>
@@ -58,8 +58,8 @@ export default function AdminAction() {
     instance.get('/getAllAdmin/getAll')
     .then(function (response) {
      
-      const array = response.data.map((val,index) => ({
-        id:index,
+      const array = response.data.map((val) => ({
+        id:val.adminId,
         firstName: val.firstName,
         lastName: val.lastName,
         email: val.userName,
@@ -86,8 +86,16 @@ export default function AdminAction() {
     console.log("edit");
   }
 
-  const deleted = () => {
-    console.log("deleted");
+  const deleted = (id) => {
+    instance.delete('/adminDeleted/'+id, {
+    })
+    .then(response => {
+      console.log(response);
+      getAllAdmin()
+    })
+    .catch(error => {
+      console.log(error.config);
+    });
   }
 
 
