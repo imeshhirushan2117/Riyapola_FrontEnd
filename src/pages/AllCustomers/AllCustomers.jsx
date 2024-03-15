@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Box, Typography } from '@mui/material'
 import DateTime from '../../common/DateTime/DateTime'
@@ -7,11 +7,11 @@ import instance from '../../services/Axios'
 
 export default function AllCustomers() {
 
-    const [data,setData] = useState([])
+    const [data, setData] = useState([])
 
     useEffect(() => {
         getaAllCustomers(setData)
-      }, []);
+    }, []);
 
     const columns = [
         { field: 'firstName', headerName: 'First name', width: 150 },
@@ -25,26 +25,26 @@ export default function AllCustomers() {
 
     const getaAllCustomers = () => {
         instance.get('/getAllCustomers/customers')
-      .then(function (response) {
+            .then(function (response) {
+                console.log(response.data)
+                const array = response.data.map((val) => ({
+                    id: val.customerId,
+                    firstName: val.firstName,
+                    lastName: val.lastName,
+                    email: val.email,
+                    contact: val.contact,
+                    nic: val.nic,
+                    address: val.address,
+                    dateTime: val.dateTime
 
-        const array = response.data.map((val) => ({
-          id: val.customerId,
-          firstName:val.firstName,
-          lastName:val.lastName,
-          email:val.email,
-          contact:val.contact,
-          nic:val.nic,
-          address:val.address,
-          dateTime:val.dateTime
+                }));
+                console.log("login data", array);
+                setData(array)
 
-        }));
-
-        console.log("login data", array);
-        setData(array);
-      })
-      .catch(function (error) {
-        console.error("Error fetching data:", error);
-      });
+            })
+            .catch(function (error) {
+                console.error("Error fetching data:", error);
+            });
     }
 
     return (
