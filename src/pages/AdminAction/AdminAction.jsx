@@ -40,7 +40,7 @@ export default function AdminAction({}) {
     { field: 'role', headerName: 'Role', width: 200 },
     {
       field: 'actions',
-      headerName: 'Actions',
+      headerName: 'Action',
       width: 150,
       renderCell: (params) => (
         <div>

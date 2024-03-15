@@ -9,6 +9,12 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DateTime from '../../common/DateTime/DateTime';
+import { DataGrid } from '@mui/x-data-grid';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
+
 export default function AdminCar() {
 
   const numberOfSeats = [
@@ -48,6 +54,49 @@ export default function AdminCar() {
     width: 1,
   });
 
+
+  const columns = [
+    { field: 'brandName', headerName: 'Brand Name', width: 150 },
+    { field: 'moduleName', headerName: 'Module Name', width: 150 },
+    { field: 'passengers', headerName: 'Passengers', width: 150 },
+    { field: 'fuelType', headerName: 'Fuel Type', width: 150 },
+    { field: 'tmType', headerName: 'Transmission Type', width: 150 },
+    { field: 'drPrice', headerName: 'Daily Rental Price', width: 150 },
+    { field: 'extraKm', headerName: 'Extra Km', width: 150 },
+    { field: 'traveled', headerName: 'Kilometers Traveled', width: 150 },
+    { field: 'availability', headerName: 'Availability', width: 150 },
+    {
+      field: 'actions',
+      headerName: 'Action',
+      width: 150,
+      renderCell: (params) => (
+        <div>
+          <IconButton
+            color='info'
+            aria-label="edit"
+            onClick={() => { openPopup(params.row) }}
+          >
+            <EditIcon />
+          </IconButton>
+
+          <IconButton
+            color='error'
+            aria-label="delete"
+            onClick={() => { deleted(params.row.id) }}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </div>
+      ),
+    },
+  ];
+  
+  const rows = [
+    { id : 1 , brandName :"Lanser" , moduleName:"CK2" , passengers:'5' , fuelType:'Petrol' ,tmType:"Manual" , drPrice:"1500" , extraKm:"30",traveled:"25000" , availability:"Not reserved"},
+    
+  ];
+
+
   return (
     <Box>
       
@@ -75,7 +124,7 @@ export default function AdminCar() {
                 disablePortal
                 id="combo-box-demo"
                 options={numberOfSeats}
-                sx={{ width: 280 }}
+                sx={{ width: 360 }}
                 renderInput={(params) => <TextField {...params} label="Number Of Passengers" />}
                 onChange={(event, value) => console.log(value.value)}
               />
@@ -88,7 +137,7 @@ export default function AdminCar() {
                 disablePortal
                 id="combo-box-demo"
                 options={fuelType}
-                sx={{ width: 280 }}
+                sx={{ width: 360 }}
                 renderInput={(params) => <TextField {...params} label="Fuel Type" />}
                 onChange={(event, value) => console.log(value.value)}
               />
@@ -101,7 +150,7 @@ export default function AdminCar() {
                 disablePortal
                 id="combo-box-demo"
                 options={type}
-                sx={{ width: 280 }}
+                sx={{ width: 360 ,}}
                 renderInput={(params) => <TextField {...params} label="Transmission Type" />}
                 onChange={(event, value) => console.log(value.value)}
               />
@@ -147,9 +196,22 @@ export default function AdminCar() {
               </Button>
             </Box>
           </Grid>
-
-
         </Grid>
+      </Box>
+
+      <Box sx={{marginTop:"20px"}}>
+      <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 5 },
+          },
+        }}
+        pageSizeOptions={[5, 10]}
+      />
+    </div>
       </Box>
     </Box>
   )
