@@ -11,12 +11,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import instance from '../../services/Axios';
 import Swal from 'sweetalert2';
-
+import DiologBox from "../../Components/DiologBox/DiologBox"
 
 export default function AdminAction() {
 
 
   const [data, setData] = useState([])
+  const [popup, setPopup] = useState(false);
 
   const [firstName, setFirstname] = useState("")
   const [lastName, setLastname] = useState("")
@@ -44,7 +45,7 @@ export default function AdminAction() {
           <IconButton
             color='info'
             aria-label="edit"
-            onClick={() => { editPopup(params.row) }}
+            onClick={() => { openPopup(params.row) }}
           >
             <EditIcon />
           </IconButton>
@@ -91,15 +92,15 @@ export default function AdminAction() {
   }
 
   const save = () => {
-    if(firstName && lastName && email && password && role != null){   
-    Swal.fire({
-      title: "Do you want to save the Admon?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`,
-    }).then((result) => {
-      if (result.isConfirmed) {
+    if (firstName && lastName && email && password && role != null) {
+      Swal.fire({
+        title: "Do you want to save the Admon?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        if (result.isConfirmed) {
           instance.post('/registerAdmin', {
             firstName: firstName,
             lastName: lastName,
@@ -114,13 +115,13 @@ export default function AdminAction() {
             .catch(function (error) {
               console.log(error);
             });
-        Swal.fire("Saved!", "", "success");
-        clear()
-      } else if (result.isDenied) {
-        Swal.fire("Admin are not saved", "", "info");
-      }
-    });
-    }else{
+          Swal.fire("Saved!", "", "success");
+          clear()
+        } else if (result.isDenied) {
+          Swal.fire("Admin are not saved", "", "info");
+        }
+      });
+    } else {
       Swal.fire({
         position: "top-center",
         icon: "info",
@@ -131,8 +132,12 @@ export default function AdminAction() {
     }
   }
 
-  const editPopup = () => {
-    console.log("edit");
+  const openPopup = () => {
+      setPopup(true)
+  }
+
+  const closePopup = () => {
+    setPopup(false)
   }
 
   const deleted = (id) => {
@@ -162,7 +167,9 @@ export default function AdminAction() {
       }
     });
 
+const closePopup = () => {
 
+}
 
   }
   return (
@@ -235,6 +242,9 @@ export default function AdminAction() {
             }}
             pageSizeOptions={[10, 20]}
           />
+          {popup &&
+           <DiologBox open={popup} handleClose={closePopup}/>
+          }
         </div>
       </Box>
     </Box>
