@@ -6,9 +6,12 @@ import TextInput from '../../common/TextInput/TextInput';
 import Typography from '@mui/material/Typography';
 import Button from '../../common/Button/Button'
 import { useState } from 'react';
+import instance from '../../services/Axios'
 
-export default function DiologBox({ handleClose, open , cancel}) {
+export default function DiologBox({ handleClose, open , cancel , }) {
 
+    // console.log(update);
+    
     const [firstName, setFirstname] = useState("")
     const [lastName, setLastname] = useState("")
     const [email, setEmail] = useState("")
@@ -19,8 +22,24 @@ export default function DiologBox({ handleClose, open , cancel}) {
         return <Slide direction="up" ref={ref} {...props} />;
     });
 
-    const update = () => {
-        console.log()
+    const update = (id) => {
+        // instance.put('/updateAdmin/'+updateData.id, {
+        //     firstName: firstName,
+        //     lastName: lastName,
+        //     userName: email,
+        //     password: password,
+        //     role: "role",
+        //   })
+      
+      
+        //     .then((response) => {
+        //       changeUpdate()
+        //         AlertComponent('success','Success...', 'Student Update Success!')
+        //     })
+        //     .catch((error) => {
+        //       AlertComponent('error','Oops...', 'Something went wrong!')
+        //       console.error(error);
+        //     });
     }
 
     return (

@@ -11,20 +11,20 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import instance from '../../services/Axios';
 import Swal from 'sweetalert2';
-import DiologBox from "../../Components/DiologBox/DiologBox"
+import DiologBox from '../../Components/DiologBox/DiologBox';
 
 export default function AdminAction() {
 
 
   const [data, setData] = useState([])
-  const [popup, setPopup] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const [firstName, setFirstname] = useState("")
   const [lastName, setLastname] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [role, setRole] = useState("")
-
+  const [updateData, setUpdateData] = useState()
 
   useEffect(() => {
     getAllAdmin(setData)
@@ -132,16 +132,16 @@ export default function AdminAction() {
     }
   }
 
-  const openPopup = () => {
-    setPopup(true)
+  const openPopup = (val) => {
+    setOpen(true)
+    setUpdateData(val)
   }
 
-  const closePopup = () => {
-    setPopup(false)
+  const handleClose = () => {
+    setOpen(false)
   }
 
   const deleted = (id) => {
-
     Swal.fire({
       title: "Do you want to deleted the Admin?",
       showDenyButton: true,
@@ -242,8 +242,8 @@ export default function AdminAction() {
             }}
             pageSizeOptions={[10, 20]}
           />
-          {popup &&
-            <DiologBox open={popup} handleClose={closePopup} cancel={cancelBtn} />
+          {open &&
+            <DiologBox open={open} handleClose={handleClose} cancel={cancelBtn} updateData={updateData} />
           }
         </div>
       </Box>
