@@ -1,26 +1,12 @@
 import AdminCar from "../pages/AdminCar/AdminCar"
 import AdminAction from '../pages/AdminAction/AdminAction'
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import Swal from "sweetalert2";
+import AllCustomers from "../pages/AllCustomers/AllCustomers";
 
-// const SignOutComponent = () => {
-//     localStorage.removeItem('stmToken')
-//     window.location.reload()
-//     console.log("log Out Admin Successfull !");
-//     alert("success", "log Out Admin Successfull !")
-// }
 
-// const alert = (icon, title) => {
-//     Swal.fire({
-//         position: "top-end",
-//         icon: icon,
-//         title: title,
-//         showConfirmButton: false,
-//         timer: 3000
-//     });
-// }
+import { IoCarSportSharp } from "react-icons/io5";
+import { FaUserTie } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa6";
+
 
 const routesNav = [
     {
@@ -28,22 +14,22 @@ const routesNav = [
         key:"admincar",
         path:"/adminCar",
         component:<AdminCar/> ,
-        icon:<DirectionsCarIcon/>
+        icon:<IoCarSportSharp/>
     },
     {
         name:"Manage Admin",
         key:"adminAction",
         path:"/adminAction",
         component:<AdminAction/> ,
-        icon:<ManageAccountsIcon/>
+        icon:<FaUserTie/>
     },
-    // {
-    //     name:"Sign Out",
-    //     key:"signOut",
-    //     path:"/signOut",
-    //     component:<SignOutComponent />,
-    //     icon:<MeetingRoomIcon/>
-    // },
+    {
+        name:"Customers",
+        key:"customers",
+        path:"/customers",
+        component:<AllCustomers />,
+        icon:<FaUsers/>
+    },
 ];
 
 export default routesNav
