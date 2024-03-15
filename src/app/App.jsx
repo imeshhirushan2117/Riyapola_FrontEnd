@@ -5,7 +5,6 @@ import SecandFooter from '../common/SecandFooter/SecandFooter'
 import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import DrawerNav from '../Components/DrawerNav/DrawerNav'
 import { useEffect, useState } from 'react'
-import DiologBox from '../Components/diologBox/diologBox'
 
 function App() {
   const [login, setLogin] = useState(false);

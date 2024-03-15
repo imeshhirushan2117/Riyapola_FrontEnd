@@ -7,18 +7,37 @@ import Typography from '@mui/material/Typography';
 import Button from '../../common/Button/Button'
 import { useState } from 'react';
 import instance from '../../services/Axios'
+import IconButton from '@mui/material/IconButton';
+import DrawIcon from '@mui/icons-material/Draw';
 
-export default function DiologBox({ handleClose, open , closeBtn , updateData }) {
+export default function DiologBox({ handleClose, open, closeBtn, updateData }) {
 
-     console.log(updateData);
-    
+    console.log(updateData);
+
     const [firstName, setFirstname] = useState(updateData?.firstName)
     const [lastName, setLastname] = useState(updateData?.lastName)
     const [email, setEmail] = useState(updateData?.email)
     const [password, setPassword] = useState(updateData?.password)
+    const [diseble, setDiseble] = useState(true)
 
     const update = () => {
-        
+        if (firstName && lastName && email != null) {
+            instance.put('/updateAdmin/' + updateData.id, {
+                firstName: firstName,
+                lastName: lastName,
+                userName: email,
+                password: password,
+                role: "Admin",
+            })
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        } else {
+            console.log("update Un Seccuse !");
+        }
     }
 
     return (
@@ -47,11 +66,23 @@ export default function DiologBox({ handleClose, open , closeBtn , updateData })
                     </Box>
 
                     <Box sx={{ margin: "10px" }}>
-                        <TextInput width={"500px"} label={"Password"} type={'password'} value={password} onChange={(val) => setPassword(val.target.value)} />
+                        <TextInput isDisable={diseble} width={"500px"} label={"Password"} type={'password'} value={password} onChange={(val) => setPassword(val.target.value)} />
+                        <Box sx={{textAlign:"end" , display:"flex"}}>
+                        <p>updatePassword</p>
+                            <IconButton aria-label="delete" onClick={() => {
+                                if(diseble == true){
+                                    setDiseble(false)
+                                }else{
+                                    setDiseble(true)
+                                }
+                            }}>
+                                <DrawIcon />
+                            </IconButton>
+                        </Box>
                     </Box>
                 </Box>
 
-                <Box sx={{display:"flex" , flexWrap:'wrap' ,padding:"10px" , justifyContent:"space-between"}}>
+                <Box sx={{ display: "flex", flexWrap: 'wrap', padding: "10px", justifyContent: "space-between" }}>
                     <Box sx={{ margin: "10px" }}>
                         <Button name={"Update"} width={"225px"} background={'#27ae60'} hoverColor={"#2ecc71"} onClick={update} />
                     </Box>

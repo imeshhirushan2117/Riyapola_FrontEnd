@@ -11,7 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import instance from '../../services/Axios';
 import Swal from 'sweetalert2';
-import DiologBox from '../../Components/DiologBox/DiologBox';
+import DiologBox from '../../Components/DiologBox/DiologBox'
 
 export default function AdminAction() {
 
@@ -57,7 +57,6 @@ export default function AdminAction() {
           >
             <DeleteIcon />
           </IconButton>
-
         </div>
       ),
     },
