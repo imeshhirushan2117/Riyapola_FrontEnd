@@ -5,31 +5,33 @@ import Slide from '@mui/material/Slide';
 import TextInput from '../../common/TextInput/TextInput';
 import Typography from '@mui/material/Typography';
 import Button from '../../common/Button/Button'
+import { useState } from 'react';
 
-export default function DiologBox({ handleClose, open, children }) {
+export default function DiologBox({ handleClose, open }) {
+
+    const [firstName, setFirstname] = useState("")
+    const [lastName, setLastname] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+  
 
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
     });
 
     const update = () => {
-        console.log("update")
+        console.log()
     }
 
     const cancel = () => {
-        console.log("cancle")
+        console.log()
     }
 
     return (
         <Dialog
             open={open}
-            TransitionComponent={Transition}
-            keepMounted
             onClose={handleClose}
-            aria-describedby="alert-dialog-slide-description"
         >
-            {children}
-
             <Box>
                 <Box sx={{ padding: '20px' }}>
                     <Typography sx={{ fontWeight: "bold", textAlign: "center" }} variant="h5" component="h5">
@@ -39,19 +41,19 @@ export default function DiologBox({ handleClose, open, children }) {
 
                 <Box>
                     <Box sx={{ margin: "10px" }}>
-                        <TextInput width={"500px"} label={"First Name"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+                        <TextInput width={"500px"} label={"First Name"} type={'text'} value={firstName} onChange={(val) => setFirstname(val.target.value)} />
                     </Box>
 
                     <Box sx={{ margin: "10px" }}>
-                        <TextInput width={"500px"} label={"Last Name"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+                        <TextInput width={"500px"} label={"Last Name"} type={'text'} value={lastName} onChange={(val) => setLastname(val.target.value)} />
                     </Box>
 
                     <Box sx={{ margin: "10px" }}>
-                        <TextInput width={"500px"} label={"Email"} type={'email'} onChange={(val) => console.log(val.target.value)} />
+                        <TextInput width={"500px"} label={"Email"} type={'email'} value={email} onChange={(val) => setEmail(val.target.value)} />
                     </Box>
 
                     <Box sx={{ margin: "10px" }}>
-                        <TextInput width={"500px"} label={"Password"} type={'password'} onChange={(val) => console.log(val.target.value)} />
+                        <TextInput width={"500px"} label={"Password"} type={'password'} value={password} onChange={(val) => setPassword(val.target.value)} />
                     </Box>
                 </Box>
 

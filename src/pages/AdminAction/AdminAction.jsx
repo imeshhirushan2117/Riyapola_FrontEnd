@@ -167,8 +167,7 @@ export default function AdminAction() {
       }
     });
 
-const closePopup = () => {
-
+const cancel = () => {
 }
 
   }
