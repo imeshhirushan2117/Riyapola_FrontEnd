@@ -133,7 +133,7 @@ export default function AdminAction() {
   }
 
   const openPopup = () => {
-      setPopup(true)
+    setPopup(true)
   }
 
   const closePopup = () => {
@@ -166,11 +166,12 @@ export default function AdminAction() {
         Swal.fire("Admin are not deleted", "", "info");
       }
     });
-
-const cancel = () => {
-}
-
   }
+
+  const cancelBtn = () => {
+    setPopup(false)
+  }
+
   return (
     <Box>
       <Box>
@@ -242,7 +243,7 @@ const cancel = () => {
             pageSizeOptions={[10, 20]}
           />
           {popup &&
-           <DiologBox open={popup} handleClose={closePopup}/>
+            <DiologBox open={popup} handleClose={closePopup} cancel={cancelBtn} />
           }
         </div>
       </Box>

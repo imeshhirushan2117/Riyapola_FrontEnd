@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '../../common/Button/Button'
 import { useState } from 'react';
 
-export default function DiologBox({ handleClose, open }) {
+export default function DiologBox({ handleClose, open , cancel}) {
 
     const [firstName, setFirstname] = useState("")
     const [lastName, setLastname] = useState("")
@@ -20,10 +20,6 @@ export default function DiologBox({ handleClose, open }) {
     });
 
     const update = () => {
-        console.log()
-    }
-
-    const cancel = () => {
         console.log()
     }
 
