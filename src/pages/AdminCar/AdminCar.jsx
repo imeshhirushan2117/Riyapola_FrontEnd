@@ -210,6 +210,7 @@ export default function AdminCar() {
           },
         }}
         pageSizeOptions={[5, 10]}
+        checkboxSelection
       />
     </div>
       </Box>

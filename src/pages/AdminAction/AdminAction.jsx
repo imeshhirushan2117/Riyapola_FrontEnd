@@ -260,6 +260,7 @@ export default function AdminAction({}) {
               },
             }}
             pageSizeOptions={[10, 20]}
+            checkboxSelection
           />
           {open &&
             <DiologBox open={open} handleClose={handleClose} closeBtn={closeBtn} updateData={updateData} />
