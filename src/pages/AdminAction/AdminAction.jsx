@@ -1,4 +1,4 @@
-import React, { isValidElement, useState ,useEffect} from 'react'
+import React, { isValidElement, useState, useEffect } from 'react'
 import { Box } from '@mui/material'
 import Grid from '@mui/material/Grid';
 import TextInput from '../../common/TextInput/TextInput';
@@ -10,13 +10,15 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import instance from '../../services/Axios';
+import Swal from 'sweetalert2';
+
 
 export default function AdminAction() {
 
 
   const [data, setData] = useState([])
 
-  
+
   useEffect(() => {
     getAllAdmin(setData)
   }, []);
@@ -56,22 +58,22 @@ export default function AdminAction() {
 
   const getAllAdmin = () => {
     instance.get('/getAllAdmin/getAll')
-    .then(function (response) {
-     
-      const array = response.data.map((val) => ({
-        id:val.adminId,
-        firstName: val.firstName,
-        lastName: val.lastName,
-        email: val.userName,
-        role: val.role
-      }));
+      .then(function (response) {
 
-      console.log("login data",array);
-      setData(array);
-    })
-    .catch(function (error) {
-      console.error("Error fetching data:", error);
-    });
+        const array = response.data.map((val) => ({
+          id: val.adminId,
+          firstName: val.firstName,
+          lastName: val.lastName,
+          email: val.userName,
+          role: val.role
+        }));
+
+        console.log("login data", array);
+        setData(array);
+      })
+      .catch(function (error) {
+        console.error("Error fetching data:", error);
+      });
   }
 
   const clear = () => {
@@ -87,15 +89,38 @@ export default function AdminAction() {
   }
 
   const deleted = (id) => {
-    instance.delete('/adminDeleted/'+id, {
-    })
-    .then(response => {
-      console.log(response);
-      getAllAdmin()
-    })
-    .catch(error => {
-      console.log(error.config);
+
+    Swal.fire({
+      title: "Do you want to deleted the Admin?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Deleted",
+      denyButtonText: `Don't Deleted`
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        instance.delete('/adminDeleted/' + id, {
+        })
+          .then(response => {
+            console.log(response);
+            getAllAdmin()
+          })
+          .catch(error => {
+            console.log(error.config);
+          });
+
+        Swal.fire("Deleted!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Admin are not deleted", "", "info");
+      }
     });
+
+
+
+  }
+
+  const deletedAleart = (title,) => {
+
   }
 
 
