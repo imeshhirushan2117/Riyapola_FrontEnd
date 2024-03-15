@@ -4,8 +4,10 @@ import Grid from '@mui/material/Grid';
 import TextInput from '../../common/TextInput/TextInput';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { useState,useEffect } from 'react';
-
+import { useState, useEffect } from 'react';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 export default function AdminCar() {
 
@@ -43,10 +45,22 @@ export default function AdminCar() {
     { label: 'Manual', value: 'manual' }
   ]
 
+  const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+  });
+
   return (
     <Box>
-      <Box sx={{ display: "flex", justifyContent: "flex-end" , padding:"10px"}}>
-      <p style={{color:"#B9B9B9" , fontSize:"15px"}}>{currentDate.toLocaleString()}</p>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", padding: "10px" }}>
+        <p style={{ color: "#B9B9B9", fontSize: "15px" }}>{currentDate.toLocaleString()}</p>
       </Box>
       <Box>
         <Grid container spacing={2}>
@@ -124,6 +138,21 @@ export default function AdminCar() {
           <Grid item xs={3}>
             <Box sx={{ padding: "10px" }}>
               <TextInput width={"100%"} label={"Availability"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+            </Box>
+          </Grid>
+
+          <Grid item xs={3}>
+            <Box sx={{ padding: "10px" }}>
+              <Button
+                component="label"
+                role={undefined}
+                variant="contained"
+                tabIndex={-1}
+                startIcon={<CloudUploadIcon />}
+              >
+                Upload Images
+                <VisuallyHiddenInput type="file" />
+              </Button>
             </Box>
           </Grid>
 
