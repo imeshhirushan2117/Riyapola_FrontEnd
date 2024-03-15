@@ -1,4 +1,4 @@
-import React, { isValidElement, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box } from '@mui/material'
 import Grid from '@mui/material/Grid';
 import TextInput from '../../common/TextInput/TextInput';
@@ -17,6 +17,12 @@ export default function AdminAction() {
 
 
   const [data, setData] = useState([])
+
+  const [firstName, setFirstname] = useState("")
+  const [lastName, setLastname] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [role, setRole] = useState("")
 
 
   useEffect(() => {
@@ -77,11 +83,52 @@ export default function AdminAction() {
   }
 
   const clear = () => {
-    console.log("clear");
+    setFirstname(""),
+      setLastname(""),
+      setEmail(""),
+      setPassword(""),
+      setRole("")
   }
 
   const save = () => {
-    console.log("save");
+    if(firstName && lastName && email && password && role != null){   
+    Swal.fire({
+      title: "Do you want to save the Admon?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+          instance.post('/registerAdmin', {
+            firstName: firstName,
+            lastName: lastName,
+            userName: email,
+            password: password,
+            role: role,
+          })
+            .then(function (response) {
+              console.log(response);
+              getAllAdmin()
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        Swal.fire("Saved!", "", "success");
+        clear()
+      } else if (result.isDenied) {
+        Swal.fire("Admin are not saved", "", "info");
+      }
+    });
+    }else{
+      Swal.fire({
+        position: "top-center",
+        icon: "info",
+        title: "Enter Data",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
   }
 
   const editPopup = () => {
@@ -118,13 +165,6 @@ export default function AdminAction() {
 
 
   }
-
-  const deletedAleart = (title,) => {
-
-  }
-
-
-
   return (
     <Box>
       <Box>
@@ -132,25 +172,25 @@ export default function AdminAction() {
 
           <Grid item xs={4}>
             <Box sx={{ padding: "10px" }}>
-              <TextInput width={"100%"} label={"First Name"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+              <TextInput width={"100%"} label={"First Name"} type={'text'} value={firstName} onChange={(val) => setFirstname(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={4}>
             <Box sx={{ padding: "10px" }}>
-              <TextInput width={"100%"} label={"Secand Name"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+              <TextInput width={"100%"} label={"Secand Name"} type={'text'} value={lastName} onChange={(val) => setLastname(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={4}>
             <Box sx={{ padding: "10px" }}>
-              <TextInput width={"100%"} label={"Email"} type={'email'} onChange={(val) => console.log(val.target.value)} />
+              <TextInput width={"100%"} label={"Email"} type={'email'} value={email} onChange={(val) => setEmail(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={4}>
             <Box sx={{ padding: "10px" }}>
-              <TextInput width={"100%"} label={"Password"} type={'password'} onChange={(val) => console.log(val.target.value)} />
+              <TextInput width={"100%"} label={"Password"} type={'password'} value={password} onChange={(val) => setPassword(val.target.value)} />
             </Box>
           </Grid>
 
@@ -162,7 +202,9 @@ export default function AdminAction() {
                 options={[{ label: "Admin", value: "Admin" }]}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Role" />}
-                onChange={(event, value) => console.log(value.value)}
+                value={role}
+                onChange={(event, value) => setRole(value.value)}
+
               />
             </Box>
           </Grid>
