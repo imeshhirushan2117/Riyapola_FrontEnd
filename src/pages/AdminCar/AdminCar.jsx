@@ -52,30 +52,30 @@ export default function AdminCar() {
     <Box>
       
       <Box sx={{ padding: "10px", textAlign: "end" }}>
-        <DateTime style={{ color: "#B9B9B9", fontSize: "15px" }} />
+        <DateTime style={{ color: "#B9B9B9", fontSize: "17px" }} />
       </Box>
 
       <Box>
         <Grid container spacing={2}>
           <Grid item xs={3}>
-            <Box sx={{ padding: "10px" }}>
+            <Box>
               <TextInput width={"100%"} label={"Brand Name"} type={'text'} onChange={(val) => console.log(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={3}>
-            <Box sx={{ padding: "10px" }}>
+            <Box>
               <TextInput width={"100%"} label={"Module Name"} type={'text'} onChange={(val) => console.log(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={3}>
-            <Box sx={{ padding: "10px" }}>
+            <Box>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
                 options={numberOfSeats}
-                sx={{ width: 250 }}
+                sx={{ width: 280 }}
                 renderInput={(params) => <TextField {...params} label="Number Of Passengers" />}
                 onChange={(event, value) => console.log(value.value)}
               />
@@ -83,12 +83,12 @@ export default function AdminCar() {
           </Grid>
 
           <Grid item xs={3}>
-            <Box sx={{ padding: "10px" }}>
+            <Box>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
                 options={fuelType}
-                sx={{ width: 200 }}
+                sx={{ width: 280 }}
                 renderInput={(params) => <TextField {...params} label="Fuel Type" />}
                 onChange={(event, value) => console.log(value.value)}
               />
@@ -96,12 +96,12 @@ export default function AdminCar() {
           </Grid>
 
           <Grid item xs={3}>
-            <Box sx={{ padding: "10px" }}>
+            <Box>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
                 options={type}
-                sx={{ width: 250 }}
+                sx={{ width: 280 }}
                 renderInput={(params) => <TextField {...params} label="Transmission Type" />}
                 onChange={(event, value) => console.log(value.value)}
               />
@@ -109,32 +109,32 @@ export default function AdminCar() {
           </Grid>
 
           <Grid item xs={3}>
-            <Box sx={{ padding: "10px" }}>
+            <Box>
               <TextInput width={"100%"} label={"Daily Rental Price"} type={'text'} onChange={(val) => console.log(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={3}>
-            <Box sx={{ padding: "10px" }}>
+            <Box>
               <TextInput width={"100%"} label={"Extra Km Tax"} type={'text'} onChange={(val) => console.log(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={3}>
-            <Box sx={{ padding: "10px" }}>
+            <Box>
               <TextInput width={"100%"} label={"Kilometers Traveled"} type={'text'} onChange={(val) => console.log(val.target.value)} />
             </Box>
           </Grid>
 
 
           <Grid item xs={3}>
-            <Box sx={{ padding: "10px" }}>
+            <Box>
               <TextInput width={"100%"} label={"Availability"} type={'text'} onChange={(val) => console.log(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={3}>
-            <Box sx={{ padding: "10px" }}>
+            <Box>
               <Button
                 component="label"
                 role={undefined}

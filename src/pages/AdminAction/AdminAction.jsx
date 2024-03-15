@@ -15,7 +15,7 @@ import DiologBox from '../../Components/DiologBox/DiologBox'
 import DateTime from '../../common/DateTime/DateTime';
 
 
-export default function AdminAction() {
+export default function AdminAction({}) {
 
 
   const [data, setData] = useState([])
@@ -134,8 +134,20 @@ export default function AdminAction() {
   }
 
   const openPopup = (val) => {
-    setOpen(true)
-    setUpdateData(val)
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to updated this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#16a085",
+      cancelButtonColor: "#A50010",
+      confirmButtonText: "Yes, update it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setOpen(true)
+        setUpdateData(val)
+      }
+    });
   }
 
   const handleClose = () => {
@@ -144,11 +156,13 @@ export default function AdminAction() {
 
   const deleted = (id) => {
     Swal.fire({
-      title: "Do you want to deleted the Admin?",
-      showDenyButton: true,
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Deleted",
-      denyButtonText: `Don't Deleted`
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#A50010",
+      confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
 
@@ -161,10 +175,11 @@ export default function AdminAction() {
           .catch(error => {
             console.log(error.config);
           });
-
-        Swal.fire("Deleted!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Admin are not deleted", "", "info");
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
       }
     });
   }
@@ -176,7 +191,7 @@ export default function AdminAction() {
   return (
     <Box>
        <Box sx={{ padding: "10px", textAlign: "end" }}>
-        <DateTime style={{ color: "#B9B9B9", fontSize: "15px" }} />
+        <DateTime style={{ color: "#B9B9B9", fontSize: "17px" }} />
       </Box>
       <Box>
         <Grid container spacing={2}>

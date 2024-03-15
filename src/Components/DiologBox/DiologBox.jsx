@@ -9,6 +9,7 @@ import { useState } from 'react';
 import instance from '../../services/Axios'
 import IconButton from '@mui/material/IconButton';
 import DrawIcon from '@mui/icons-material/Draw';
+import Swal from 'sweetalert2';
 
 export default function DiologBox({ handleClose, open, closeBtn, updateData }) {
 
@@ -31,15 +32,24 @@ export default function DiologBox({ handleClose, open, closeBtn, updateData }) {
             })
                 .then((response) => {
                     console.log(response.data);
+                    Swal.fire({
+                        title: "Updated!",
+                        text: "Your file has been updated.",
+                        icon: "success"
+                    });
+                    
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         } else {
-            console.log("update Un Seccuse !");
+            Swal.fire({
+                title: "Error!",
+                text: "Your file has been deleted Faild.",
+                icon: "error"
+            });
         }
     }
-
     return (
         <Dialog
             open={open}
@@ -67,12 +77,12 @@ export default function DiologBox({ handleClose, open, closeBtn, updateData }) {
 
                     <Box sx={{ margin: "10px" }}>
                         <TextInput isDisable={diseble} width={"500px"} label={"Password"} type={'password'} value={password} onChange={(val) => setPassword(val.target.value)} />
-                        <Box sx={{textAlign:"end" , display:"flex"}}>
-                        <p>updatePassword</p>
+                        <Box sx={{ textAlign: "end", display: "flex" }}>
+                            <p>updatePassword</p>
                             <IconButton aria-label="delete" onClick={() => {
-                                if(diseble == true){
+                                if (diseble == true) {
                                     setDiseble(false)
-                                }else{
+                                } else {
                                     setDiseble(true)
                                 }
                             }}>
