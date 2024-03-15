@@ -14,7 +14,7 @@ import instance from '../../services/Axios';
 export default function AdminAction() {
 
 
-  const [data, setData] = useState("");
+  const [data, setData] = useState([])
 
   
   useEffect(() => {
@@ -56,31 +56,20 @@ export default function AdminAction() {
 
   const getAllAdmin = () => {
     instance.get('/getAllAdmin/getAll')
-      .then(function (response) {
-        console.log(response);
-        const array = [];
-        response.data.forEach(val => {
-          array.push({
-            firstName: val.firstName,
-            lastName: val.lastName,
-            email: val.userName,
-            role: val.role
-          })
-        })
-        setData(array)
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
-      });
+    .then(function (response) {
+      console.log(response);
+      const array = response.data.map(val => ({
+        firstName: val.firstName,
+        lastName: val.lastName,
+        email: val.userName,
+        role: val.role
+      }));
+      setData(array);
+    })
+    .catch(function (error) {
+      console.error("Error fetching data:", error);
+    });
   }
-
-  // const rows = [
-  //   { id: 1,  firstName:'Imesh', lastName: 'Hirushan',email : "imeshhirushan@gmail.com" , role:"Admin" , action:""}  
-  // ];
 
   const clear = () => {
     console.log("clear");

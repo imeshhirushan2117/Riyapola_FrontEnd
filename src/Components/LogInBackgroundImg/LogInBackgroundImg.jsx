@@ -9,25 +9,25 @@ import Swal from 'sweetalert2'
 
 export default function LogInBackgroundImg() {
 
-    const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
+    const [userName, setUserName] = useState("imesh@gmail.com")
+    const [password, setPassword] = useState("imesh1234")
 
     const loginAdmin = () => {
 
-            instance.post('/adminLogin/login', {
-                userName: userName,
-                password: password
+        instance.post('/adminLogin/login', {
+            userName: userName,
+            password: password
+        })
+            .then(function (response) {
+                console.log(response.data);
+                localStorage.setItem('stmToken', response.data);
+                window.location.reload()
+                alert("success", "login Success!")
             })
-                .then(function (response) {
-                    console.log(response.data.token);
-                    localStorage.setItem('stmToken', response.data.token);
-                    window.location.reload()
-                    alert("success", "login Success!")
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    alert("error", "Login Unsuccess!")
-                });
+            .catch(function (error) {
+                console.log(error);
+                alert("error", "Login Unsuccess!")
+            });
 
     }
 
