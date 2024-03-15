@@ -4,38 +4,50 @@ import Grid from '@mui/material/Grid';
 import TextInput from '../../common/TextInput/TextInput';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-
+import { useState,useEffect } from 'react';
 
 
 export default function AdminCar() {
 
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const numberOfSeats = [
-    { label: '1' , value: '1'},
-    { label: '2' , value: '2'},
-    { label: '3' , value: '3'},
-    { label: '4' , value: '4'},
-    { label: '5' , value: '5'},
-    { label: '6' , value: '6'},
-    { label: '7' , value: '7'},
-    { label: '8' , value: '8'},
-    { label: '9' , value: '9'},
-    { label: '10' , value: '10'},
-  
+    { label: '1', value: '1' },
+    { label: '2', value: '2' },
+    { label: '3', value: '3' },
+    { label: '4', value: '4' },
+    { label: '5', value: '5' },
+    { label: '6', value: '6' },
+    { label: '7', value: '7' },
+    { label: '8', value: '8' },
+    { label: '9', value: '9' },
+    { label: '10', value: '10' },
+
   ]
 
   const fuelType = [
-    {label : 'Petrol' , value : 'petrol'},
-    {label : 'Diesel ' , value : 'diesel '},
-    {label : 'Hybrid' , value : 'hybrid'}
+    { label: 'Petrol', value: 'petrol' },
+    { label: 'Diesel ', value: 'diesel ' },
+    { label: 'Hybrid', value: 'hybrid' }
   ]
 
-  const type =[
-    {label :'Auto' , value : 'auto'},
-    {label :'Manual' , value : 'manual'}
+  const type = [
+    { label: 'Auto', value: 'auto' },
+    { label: 'Manual', value: 'manual' }
   ]
 
   return (
     <Box>
+      <Box sx={{ display: "flex", justifyContent: "flex-end" , padding:"10px"}}>
+      <p style={{color:"#B9B9B9" , fontSize:"15px"}}>{currentDate.toLocaleString()}</p>
+      </Box>
       <Box>
         <Grid container spacing={2}>
 
@@ -93,6 +105,25 @@ export default function AdminCar() {
           <Grid item xs={3}>
             <Box sx={{ padding: "10px" }}>
               <TextInput width={"100%"} label={"Daily Rental Price"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+            </Box>
+          </Grid>
+
+          <Grid item xs={3}>
+            <Box sx={{ padding: "10px" }}>
+              <TextInput width={"100%"} label={"Extra Km Tax"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+            </Box>
+          </Grid>
+
+          <Grid item xs={3}>
+            <Box sx={{ padding: "10px" }}>
+              <TextInput width={"100%"} label={"Kilometers Traveled"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+            </Box>
+          </Grid>
+
+
+          <Grid item xs={3}>
+            <Box sx={{ padding: "10px" }}>
+              <TextInput width={"100%"} label={"Availability"} type={'text'} onChange={(val) => console.log(val.target.value)} />
             </Box>
           </Grid>
 
