@@ -12,6 +12,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import instance from '../../services/Axios';
 import Swal from 'sweetalert2';
 import DiologBox from '../../Components/DiologBox/DiologBox'
+import DateTime from '../../common/DateTime/DateTime';
+
 
 export default function AdminAction() {
 
@@ -173,6 +175,9 @@ export default function AdminAction() {
 
   return (
     <Box>
+       <Box sx={{ padding: "10px", textAlign: "end" }}>
+        <DateTime style={{ color: "#B9B9B9", fontSize: "15px" }} />
+      </Box>
       <Box>
         <Grid container spacing={2}>
 

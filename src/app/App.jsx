@@ -5,6 +5,7 @@ import SecandFooter from '../common/SecandFooter/SecandFooter'
 import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import DrawerNav from '../Components/DrawerNav/DrawerNav'
 import { useEffect, useState } from 'react'
+import DateTime from '../common/DateTime/DateTime'
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -30,6 +31,7 @@ function App() {
             <Route path={'/loginPage'} element={<LogInPage />} />
           </Routes>
       }
+      {/* <DateTime/> */}
     </>
   );
 }

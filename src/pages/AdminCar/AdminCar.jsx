@@ -8,17 +8,8 @@ import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-
+import DateTime from '../../common/DateTime/DateTime';
 export default function AdminCar() {
-
-  const [currentDate, setCurrentDate] = useState(new Date());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const numberOfSeats = [
     { label: '1', value: '1' },
@@ -59,12 +50,13 @@ export default function AdminCar() {
 
   return (
     <Box>
-      <Box sx={{ display: "flex", justifyContent: "flex-end", padding: "10px" }}>
-        <p style={{ color: "#B9B9B9", fontSize: "15px" }}>{currentDate.toLocaleString()}</p>
+      
+      <Box sx={{ padding: "10px", textAlign: "end" }}>
+        <DateTime style={{ color: "#B9B9B9", fontSize: "15px" }} />
       </Box>
+
       <Box>
         <Grid container spacing={2}>
-
           <Grid item xs={3}>
             <Box sx={{ padding: "10px" }}>
               <TextInput width={"100%"} label={"Brand Name"} type={'text'} onChange={(val) => console.log(val.target.value)} />
