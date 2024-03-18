@@ -6,6 +6,7 @@ import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import DrawerNav from '../Components/DrawerNav/DrawerNav'
 import { useEffect, useState } from 'react'
 import DateTime from '../common/DateTime/DateTime'
+import AllCustomers from '../pages/AllCustomers/AllCustomers'
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -21,7 +22,7 @@ function App() {
 
   return (
     <>
-      {
+      {/* {
         login ?
           <DrawerNav />
           :
@@ -30,8 +31,8 @@ function App() {
             <Route path={'/home'} element={<Home />} />
             <Route path={'/loginPage'} element={<LogInPage />} />
           </Routes>
-      }
-      {/* <DateTime/> */}
+      } */}
+      <AllCustomers/>
     </>
   );
 }
