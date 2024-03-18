@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid';
 import TextInput from '../../common/TextInput/TextInput';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -90,18 +90,22 @@ export default function AdminCar() {
       ),
     },
   ];
-  
+
   const rows = [
-    { id : 1 , brandName :"Lanser" , moduleName:"CK2" , passengers:'5' , fuelType:'Petrol' ,tmType:"Manual" , drPrice:"1500" , extraKm:"30",traveled:"25000" , availability:"Not reserved"},
-    
+    { id: 1, brandName: "Lanser", moduleName: "CK2", passengers: '5', fuelType: 'Petrol', tmType: "Manual", drPrice: "1500", extraKm: "30", traveled: "25000", availability: "Not reserved" },
+
   ];
 
 
   return (
     <Box>
-      
+
       <Box sx={{ padding: "10px", textAlign: "end" }}>
         <DateTime style={{ color: "#B9B9B9", fontSize: "17px" }} />
+      </Box>
+
+      <Box sx={{ textAlign: "center", fontSize: "30px", marginBottom: "40px" ,  fontWeight:'bold' }}>
+          Manage<samp style={{color:"#A50010"}}> Vehial</samp>
       </Box>
 
       <Box>
@@ -150,7 +154,7 @@ export default function AdminCar() {
                 disablePortal
                 id="combo-box-demo"
                 options={type}
-                sx={{ width: 360 ,}}
+                sx={{ width: 360, }}
                 renderInput={(params) => <TextField {...params} label="Transmission Type" />}
                 onChange={(event, value) => console.log(value.value)}
               />
@@ -199,20 +203,20 @@ export default function AdminCar() {
         </Grid>
       </Box>
 
-      <Box sx={{marginTop:"20px"}}>
-      <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
-    </div>
+      <Box sx={{ marginTop: "20px" }}>
+        <div style={{ height: 400, width: '100%' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 5 },
+              },
+            }}
+            pageSizeOptions={[5, 10]}
+            checkboxSelection
+          />
+        </div>
       </Box>
     </Box>
   )

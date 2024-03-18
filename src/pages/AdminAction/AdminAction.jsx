@@ -190,6 +190,11 @@ export default function AdminAction({}) {
 
   return (
     <Box>
+
+<Box sx={{ textAlign: "center", fontSize: "30px", marginBottom: "40px" ,  fontWeight:'bold' }}>
+          Manage<samp style={{color:"#A50010"}}> Admin</samp>
+      </Box>
+
        <Box sx={{ padding: "10px", textAlign: "end" }}>
         <DateTime style={{ color: "#B9B9B9", fontSize: "17px" }} />
       </Box>
