@@ -19,15 +19,15 @@ import Swal from 'sweetalert2';
 
 export default function AdminCar() {
 
-  const [brandName, setBrandName] = useState("")
-  const [moduleName, setModuleName] = useState("")
+  const [brandName, setBrandName] = useState("sample")
+  const [moduleName, setModuleName] = useState("sample")
   const [passenger, setPassenger] = useState("")
   const [fulType, setFulType] = useState("")
   const [tmType, setTmType] = useState("")
-  const [drPrice, setDrPrice] = useState("")
-  const [dlimet, setDlimet] = useState("")
-  const [extraKm, setExtraKm] = useState("")
-  const [traveled, setTraveled] = useState("")
+  const [drPrice, setDrPrice] = useState("4500")
+  const [dlimet, setDlimet] = useState("100")
+  const [extraKm, setExtraKm] = useState("45")
+  const [traveled, setTraveled] = useState("23000")
   const [status, setStatus] = useState("")
 
   const [data ,  setData] = useState ([])
@@ -85,6 +85,7 @@ export default function AdminCar() {
     { field: 'fuelType', headerName: 'Fuel Type', width: 150 },
     { field: 'tmType', headerName: 'Transmission Type', width: 150 },
     { field: 'drPrice', headerName: 'Daily Rental Price', width: 150 },
+    { field: 'dlimet', headerName: 'Daily Limit Kilometers', width: 170 },
     { field: 'extraKm', headerName: 'Extra Km', width: 150 },
     { field: 'traveled', headerName: 'Kilometers Traveled', width: 150 },
     { field: 'status', headerName: 'Status', width: 150 },
@@ -118,8 +119,8 @@ export default function AdminCar() {
 
     if (brandName && moduleName && passenger && fulType && tmType && drPrice && dlimet && extraKm && traveled && status != null){
       instance.post('/vehicle/saveVehicle', {
-        brandName: brandName,
-        moduleName: moduleName,
+        brandName: brandName ? brandName.toUpperCase() : null,
+        moduleName: moduleName ? moduleName.toUpperCase() : null,
         passengers: passenger,
         fuelType: fulType,
         transmissionType: tmType,
@@ -188,6 +189,7 @@ export default function AdminCar() {
         fuelType : val.fuelType,
         tmType : val.transmissionType,
         drPrice : val.dailyRentalPrice,
+        dlimet : val.dailyLimitKilometers,
         extraKm:val.extraKm,
         traveled:val.kilometersTraveled,
         status : val.status
