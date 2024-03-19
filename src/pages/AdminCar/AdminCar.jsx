@@ -148,6 +148,37 @@ export default function AdminCar() {
     }
   }
 
+  const deleted = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#A50010",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        instance.delete('/vehicle/deletedVehicle/' + id, {
+        })
+          .then(response => {
+            console.log(response);
+            getAllCars()
+          })
+          .catch(error => {
+            console.log(error.config);
+          });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+  }
+
+
   const alert = (icon , title) => {
     Swal.fire({
       position: "top-center",
