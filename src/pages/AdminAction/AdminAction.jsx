@@ -68,6 +68,8 @@ export default function AdminAction({}) {
     instance.get('/getAllAdmin/getAll')
       .then(function (response) {
 
+        console.log("admin : "+response.data);
+
         const array = response.data.map((val) => ({
           id: val.adminId,
           firstName: val.firstName,

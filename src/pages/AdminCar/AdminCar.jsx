@@ -30,6 +30,12 @@ export default function AdminCar() {
   const [traveled, setTraveled] = useState("")
   const [status, setStatus] = useState("")
 
+  const [data ,  setData] = useState ([])
+
+  useEffect (()=>{
+    getAllCars(setData)
+  },[])
+
   const numberOfSeats = [
     { label: '1', value: '1' },
     { label: '2', value: '2' },
@@ -50,7 +56,7 @@ export default function AdminCar() {
   ]
 
   const type = [
-    { label: 'Auto', value: 'Auto' },
+    { label: 'Automic', value: 'Automic' },
     { label: 'Manual', value: 'Manual' }
   ]
 
@@ -81,7 +87,7 @@ export default function AdminCar() {
     { field: 'drPrice', headerName: 'Daily Rental Price', width: 150 },
     { field: 'extraKm', headerName: 'Extra Km', width: 150 },
     { field: 'traveled', headerName: 'Kilometers Traveled', width: 150 },
-    { field: 'availability', headerName: 'Availability', width: 150 },
+    { field: 'status', headerName: 'Status', width: 150 },
     {
       field: 'actions',
       headerName: 'Action',
@@ -108,11 +114,6 @@ export default function AdminCar() {
     },
   ];
 
-  const rows = [
-    { id: 1, brandName: "Lanser", moduleName: "CK2", passengers: '5', fuelType: 'Petrol', tmType: "Manual", drPrice: "1500", extraKm: "30", traveled: "25000", availability: "Not reserved" },
-  ];
-
-
   const save = () => {
 
     if (brandName && moduleName && passenger && fulType && tmType && drPrice && dlimet && extraKm && traveled && status != null){
@@ -130,7 +131,9 @@ export default function AdminCar() {
       })
         .then(function (response) {
           console.log(response);
+          getAllCars()
           alert("success" , "Vehicle Save Success")
+
           clear()
         })
         .catch(function (error) {
@@ -169,6 +172,34 @@ export default function AdminCar() {
     setExtraKm("")
     setTraveled("")
     setStatus("")
+  }
+
+
+  const getAllCars = () => {
+    instance.get('/vehicle/getAllVehicles/vehicles')
+    .then(function (response) {
+      console.log("hi hutto "+ response.data);
+
+      const array = response.data.map((val)=>({
+        id:val.vehicleId,
+        brandName:val.brandName,
+        moduleName : val.moduleName,
+        passengers  : val.passengers,
+        fuelType : val.fuelType,
+        tmType : val.transmissionType,
+        drPrice : val.dailyRentalPrice,
+        extraKm:val.extraKm,
+        traveled:val.kilometersTraveled,
+        status : val.status
+
+      }))
+
+console.log(array);
+setData(array)
+    })
+    .catch(function (error) {
+      console.error("Error fetching data:", error);
+    });
   }
 
   return (
@@ -309,14 +340,14 @@ export default function AdminCar() {
       <Box sx={{ marginTop: "20px" }}>
         <div style={{ height: 400, width: '100%' }}>
           <DataGrid
-            rows={rows}
+            rows={data}
             columns={columns}
             initialState={{
               pagination: {
-                paginationModel: { page: 0, pageSize: 5 },
+                paginationModel: { page: 0, pageSize: 10 },
               },
             }}
-            pageSizeOptions={[5, 10]}
+            pageSizeOptions={[10,20]}
             checkboxSelection
           />
         </div>

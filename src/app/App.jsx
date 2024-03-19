@@ -7,6 +7,7 @@ import DrawerNav from '../Components/DrawerNav/DrawerNav'
 import { useEffect, useState } from 'react'
 import DateTime from '../common/DateTime/DateTime'
 import AllCustomers from '../pages/AllCustomers/AllCustomers'
+import AdminCar from '../pages/AdminCar/AdminCar'
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -32,7 +33,7 @@ function App() {
             <Route path={'/loginPage'} element={<LogInPage />} />
           </Routes>
       }
-      {/* <AllCustomers/> */}
+      {/* <AdminCar/> */}
     </>
   );
 }
