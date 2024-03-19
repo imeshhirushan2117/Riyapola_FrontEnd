@@ -17,6 +17,16 @@ import EditIcon from '@mui/icons-material/Edit';
 
 export default function AdminCar() {
 
+  const [brandName,setBrandName] = useState("")
+  const [moduleName,setModuleName] = useState("")
+  const [passenger,setPassenger] = useState("")
+  const [fulType,setFulType] = useState("")
+  const [tmType,setTmType] = useState("")
+  const [drPrice,setDrPrice] = useState("")
+  const [extraKm,setExtraKm] = useState("")
+  const [traveled,setTraveled] = useState("")
+  const [availability,setAvailability] = useState("")
+
   const numberOfSeats = [
     { label: '1', value: '1' },
     { label: '2', value: '2' },
@@ -32,14 +42,19 @@ export default function AdminCar() {
   ]
 
   const fuelType = [
-    { label: 'Petrol', value: 'petrol' },
-    { label: 'Diesel ', value: 'diesel ' },
-    { label: 'Hybrid', value: 'hybrid' }
+    { label: 'Petrol', value: 'Petrol' },
+    { label: 'Diesel ', value: 'Diesel ' },
+    { label: 'Hybrid', value: 'Hybrid' }
   ]
 
   const type = [
     { label: 'Auto', value: 'auto' },
     { label: 'Manual', value: 'manual' }
+  ]
+
+  const avty = [
+    { label: 'Availability', value: 'Availability' },
+    { label: 'Not Availability', value: 'Not Availability' }
   ]
 
   const VisuallyHiddenInput = styled('input')({
@@ -93,7 +108,6 @@ export default function AdminCar() {
 
   const rows = [
     { id: 1, brandName: "Lanser", moduleName: "CK2", passengers: '5', fuelType: 'Petrol', tmType: "Manual", drPrice: "1500", extraKm: "30", traveled: "25000", availability: "Not reserved" },
-
   ];
 
 
@@ -112,13 +126,13 @@ export default function AdminCar() {
         <Grid container spacing={2}>
           <Grid item xs={3}>
             <Box>
-              <TextInput width={"100%"} label={"Brand Name"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+              <TextInput width={"100%"} label={"Brand Name"} type={'text'} value={brandName} onChange={(val) => setBrandName(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={3}>
             <Box>
-              <TextInput width={"100%"} label={"Module Name"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+              <TextInput width={"100%"} label={"Module Name"} type={'text'} value={moduleName}  onChange={(val) => setModuleName(val.target.value)} />
             </Box>
           </Grid>
 
@@ -128,9 +142,10 @@ export default function AdminCar() {
                 disablePortal
                 id="combo-box-demo"
                 options={numberOfSeats}
+                value={passenger}
                 sx={{ width: 360 }}
                 renderInput={(params) => <TextField {...params} label="Number Of Passengers" />}
-                onChange={(event, value) => console.log(value.value)}
+                onChange={(event, value) => setPassenger(value.value)}
               />
             </Box>
           </Grid>
@@ -141,9 +156,10 @@ export default function AdminCar() {
                 disablePortal
                 id="combo-box-demo"
                 options={fuelType}
+                value={fulType} 
                 sx={{ width: 360 }}
                 renderInput={(params) => <TextField {...params} label="Fuel Type" />}
-                onChange={(event, value) => console.log(value.value)}
+                onChange={(event, value) => setFulType(value.value)}
               />
             </Box>
           </Grid>
@@ -155,34 +171,50 @@ export default function AdminCar() {
                 id="combo-box-demo"
                 options={type}
                 sx={{ width: 360, }}
+                value={tmType}
                 renderInput={(params) => <TextField {...params} label="Transmission Type" />}
-                onChange={(event, value) => console.log(value.value)}
+                onChange={(event, value) => setTmType(value.value)}
               />
             </Box>
           </Grid>
 
           <Grid item xs={3}>
             <Box>
-              <TextInput width={"100%"} label={"Daily Rental Price"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+              <TextInput width={"100%"} label={"Daily Rental Price"} value={drPrice} type={'text'} onChange={(val) => setDrPrice(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={3}>
             <Box>
-              <TextInput width={"100%"} label={"Extra Km Tax"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+              <TextInput width={"100%"} label={"Extra Km Tax"} type={'text'} value={extraKm} onChange={(val) => setExtraKm(val.target.value)} />
             </Box>
           </Grid>
 
           <Grid item xs={3}>
             <Box>
-              <TextInput width={"100%"} label={"Kilometers Traveled"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+              <TextInput width={"100%"} label={"Kilometers Traveled"} value={traveled}  type={'text'} onChange={(val) => setTraveled(val.target.value)} />
             </Box>
           </Grid>
 
 
+          {/* <Grid item xs={3}>
+            <Box>
+              <TextInput width={"100%"} label={"Availability"} type={'text'}  onChange={(val) => setAvailability(val.target.value)} />
+            </Box>
+          </Grid> */}
+
+
           <Grid item xs={3}>
             <Box>
-              <TextInput width={"100%"} label={"Availability"} type={'text'} onChange={(val) => console.log(val.target.value)} />
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={avty}
+                sx={{ width: 360, }}
+                value={availability}
+                renderInput={(params) => <TextField {...params} label="Availability" />}
+                onChange={(event, value) => setAvailability(value.value)}
+              />
             </Box>
           </Grid>
 
