@@ -14,6 +14,8 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MyButton from '../../common/Button/Button'
+import instance from '../../services/Axios'
+import Swal from 'sweetalert2';
 
 export default function AdminCar() {
 
@@ -23,9 +25,10 @@ export default function AdminCar() {
   const [fulType, setFulType] = useState("")
   const [tmType, setTmType] = useState("")
   const [drPrice, setDrPrice] = useState("")
+  const [dlimet, setDlimet] = useState("")
   const [extraKm, setExtraKm] = useState("")
   const [traveled, setTraveled] = useState("")
-  const [availability, setAvailability] = useState("")
+  const [status, setStatus] = useState("")
 
   const numberOfSeats = [
     { label: '1', value: '1' },
@@ -111,9 +114,48 @@ export default function AdminCar() {
 
 
   const save = () => {
-      // console.log("Save : " + brandName,moduleName,passenger,fulType,tmType,drPrice,extraKm,traveled,availability );
 
-      console.log(traveled + " Km");
+    if (brandName && moduleName && passenger && fulType && tmType && drPrice && dlimet && extraKm && traveled && status != null){
+      instance.post('/vehicle/saveVehicle', {
+        brandName: brandName,
+        moduleName: moduleName,
+        passengers: passenger,
+        fuelType: fulType,
+        transmissionType: tmType,
+        dailyRentalPrice: drPrice,
+        dailyLimitKilometers: dlimet,
+        extraKm: extraKm,
+        kilometersTraveled: traveled,
+        status: status,
+      })
+        .then(function (response) {
+          console.log(response);
+          alert("success" , "Vehicle Save Success")
+          clear()
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }else{
+      Swal.fire({
+        position: "top-center",
+        icon: "info",
+        title: "Enter Data",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+ 
+  }
+
+  const alert = (icon , title) => {
+    Swal.fire({
+      position: "top-center",
+      icon: icon,
+      title: title,
+      showConfirmButton: false,
+      timer: 1500
+    });
   }
 
   const clear = () => {
@@ -123,9 +165,10 @@ export default function AdminCar() {
     setFulType("")
     setTmType("")
     setDrPrice("")
+    setDlimet("")
     setExtraKm("")
     setTraveled("")
-    setAvailability("")
+    setStatus("")
   }
 
   return (
@@ -201,6 +244,13 @@ export default function AdminCar() {
             </Box>
           </Grid>
 
+
+          <Grid item xs={2}>
+            <Box>
+              <TextInput width={"100%"} label={"Limit Kilometers"} value={dlimet} type={'text'} onChange={(val) => setDlimet(val.target.value)} />
+            </Box>
+          </Grid>
+
           <Grid item xs={2}>
             <Box>
               <TextInput width={"100%"} label={"Extra Km Tax"} type={'text'} value={extraKm} onChange={(val) => setExtraKm(val.target.value)} />
@@ -220,9 +270,9 @@ export default function AdminCar() {
                 id="combo-box-demo"
                 options={avty}
                 sx={{ width: '100%' }}
-                value={availability}
+                value={status}
                 renderInput={(params) => <TextField {...params} label="Availability" />}
-                onChange={(event, value) => setAvailability(value.value)}
+                onChange={(event, value) => setStatus(value.value)}
               />
             </Box>
           </Grid>
