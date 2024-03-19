@@ -30,6 +30,7 @@ export default function AdminCar() {
   const [status, setStatus] = useState("")
   const [data ,  setData] = useState ([])
 
+
   useEffect (()=>{
     getAllCars(setData)
   },[])
