@@ -13,19 +13,19 @@ import { DataGrid } from '@mui/x-data-grid';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-
+import MyButton from '../../common/Button/Button'
 
 export default function AdminCar() {
 
-  const [brandName,setBrandName] = useState("")
-  const [moduleName,setModuleName] = useState("")
-  const [passenger,setPassenger] = useState("")
-  const [fulType,setFulType] = useState("")
-  const [tmType,setTmType] = useState("")
-  const [drPrice,setDrPrice] = useState("")
-  const [extraKm,setExtraKm] = useState("")
-  const [traveled,setTraveled] = useState("")
-  const [availability,setAvailability] = useState("")
+  const [brandName, setBrandName] = useState("")
+  const [moduleName, setModuleName] = useState("")
+  const [passenger, setPassenger] = useState("")
+  const [fulType, setFulType] = useState("")
+  const [tmType, setTmType] = useState("")
+  const [drPrice, setDrPrice] = useState("")
+  const [extraKm, setExtraKm] = useState("")
+  const [traveled, setTraveled] = useState("")
+  const [availability, setAvailability] = useState("")
 
   const numberOfSeats = [
     { label: '1', value: '1' },
@@ -48,13 +48,13 @@ export default function AdminCar() {
   ]
 
   const type = [
-    { label: 'Auto', value: 'auto' },
-    { label: 'Manual', value: 'manual' }
+    { label: 'Auto', value: 'Auto' },
+    { label: 'Manual', value: 'Manual' }
   ]
 
   const avty = [
-    { label: 'Availability', value: 'Availability' },
-    { label: 'Not Availability', value: 'Not Availability' }
+    { label: 'Available', value: 'Available' },
+    { label: 'Not Available', value: 'Not Available' }
   ]
 
   const VisuallyHiddenInput = styled('input')({
@@ -111,6 +111,22 @@ export default function AdminCar() {
   ];
 
 
+  const save = () => {
+      console.log("Save : " + brandName,moduleName,passenger,fulType,tmType,drPrice,extraKm,traveled,availability );
+  }
+
+  const clear = () => {
+    setBrandName("")
+    setModuleName("")
+    setPassenger("")
+    setFulType("")
+    setTmType("")
+    setDrPrice("")
+    setExtraKm("")
+    setTraveled("")
+    setAvailability("")
+  }
+
   return (
     <Box>
 
@@ -118,8 +134,8 @@ export default function AdminCar() {
         <DateTime style={{ color: "#B9B9B9", fontSize: "17px" }} />
       </Box>
 
-      <Box sx={{ textAlign: "center", fontSize: "30px", marginBottom: "40px" ,  fontWeight:'bold' }}>
-          Manage<samp style={{color:"#A50010"}}> Vehial</samp>
+      <Box sx={{ textAlign: "center", fontSize: "30px", marginBottom: "40px", fontWeight: 'bold' }}>
+        Manage<samp style={{ color: "#A50010" }}> Vehial</samp>
       </Box>
 
       <Box>
@@ -132,7 +148,7 @@ export default function AdminCar() {
 
           <Grid item xs={3}>
             <Box>
-              <TextInput width={"100%"} label={"Module Name"} type={'text'} value={moduleName}  onChange={(val) => setModuleName(val.target.value)} />
+              <TextInput width={"100%"} label={"Module Name"} type={'text'} value={moduleName} onChange={(val) => setModuleName(val.target.value)} />
             </Box>
           </Grid>
 
@@ -156,7 +172,7 @@ export default function AdminCar() {
                 disablePortal
                 id="combo-box-demo"
                 options={fuelType}
-                value={fulType} 
+                value={fulType}
                 sx={{ width: 360 }}
                 renderInput={(params) => <TextField {...params} label="Fuel Type" />}
                 onChange={(event, value) => setFulType(value.value)}
@@ -192,17 +208,9 @@ export default function AdminCar() {
 
           <Grid item xs={3}>
             <Box>
-              <TextInput width={"100%"} label={"Kilometers Traveled"} value={traveled}  type={'text'} onChange={(val) => setTraveled(val.target.value)} />
+              <TextInput width={"100%"} label={"Kilometers Traveled"} value={traveled} type={'text'} onChange={(val) => setTraveled(val.target.value)} />
             </Box>
           </Grid>
-
-
-          {/* <Grid item xs={3}>
-            <Box>
-              <TextInput width={"100%"} label={"Availability"} type={'text'}  onChange={(val) => setAvailability(val.target.value)} />
-            </Box>
-          </Grid> */}
-
 
           <Grid item xs={3}>
             <Box>
@@ -233,6 +241,18 @@ export default function AdminCar() {
             </Box>
           </Grid>
         </Grid>
+
+
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "end", gap: "10px", flexWrap: "wrap" }}>
+          <Box>
+            <MyButton name={"Clear"} width={"200px"} background={'#f39c12'} hoverColor={"#f1c40f"} onClick={clear} />
+          </Box>
+
+          <Box>
+            <MyButton name={"Save"} width={"200px"} background={'#16a085'} hoverColor={"#1abc9c"} onClick={save} />
+          </Box>
+        </Box>
+
       </Box>
 
       <Box sx={{ marginTop: "20px" }}>
