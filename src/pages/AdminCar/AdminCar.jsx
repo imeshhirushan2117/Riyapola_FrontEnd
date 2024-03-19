@@ -16,6 +16,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import MyButton from '../../common/Button/Button'
 import instance from '../../services/Axios'
 import Swal from 'sweetalert2';
+import DiologBoxCommon from '../../common/DiologBoxCommon/DiologBoxCommon';
 
 export default function AdminCar() {
 
@@ -28,12 +29,14 @@ export default function AdminCar() {
   const [dlimet, setDlimet] = useState("100")
   const [extraKm, setExtraKm] = useState("45")
   const [status, setStatus] = useState("")
-  const [data ,  setData] = useState ([])
+  const [data, setData] = useState([])
+
+  const [open, setOpen] = useState(false);
 
 
-  useEffect (()=>{
+  useEffect(() => {
     getAllCars(setData)
-  },[])
+  }, [])
 
   const numberOfSeats = [
     { label: '1', value: '1' },
@@ -96,7 +99,7 @@ export default function AdminCar() {
           <IconButton
             color='info'
             aria-label="edit"
-            onClick={() => { openPopup(params.row) }}
+            onClick={() => { clickOpen(params.row) }}
           >
             <EditIcon />
           </IconButton>
@@ -115,7 +118,7 @@ export default function AdminCar() {
 
   const save = () => {
 
-    if (brandName && moduleName && passenger && fulType && tmType && drPrice && dlimet && extraKm  && status != null){
+    if (brandName && moduleName && passenger && fulType && tmType && drPrice && dlimet && extraKm && status != null) {
       instance.post('/vehicle/saveVehicle', {
         brandName: brandName ? brandName.toUpperCase() : null,
         moduleName: moduleName ? moduleName.toUpperCase() : null,
@@ -124,20 +127,20 @@ export default function AdminCar() {
         transmissionType: tmType,
         dailyRentalPrice: drPrice,
         dailyLimitKilometers: dlimet,
-        extraKm:extraKm,
+        extraKm: extraKm,
         status: status,
       })
         .then(function (response) {
           console.log(response);
           getAllCars()
-          alert("success" , "Vehicle Save Success")
+          alert("success", "Vehicle Save Success")
 
           clear()
         })
         .catch(function (error) {
           console.log(error);
         });
-    }else{
+    } else {
       Swal.fire({
         position: "top-center",
         icon: "info",
@@ -179,7 +182,7 @@ export default function AdminCar() {
   }
 
 
-  const alert = (icon , title) => {
+  const alert = (icon, title) => {
     Swal.fire({
       position: "top-center",
       icon: icon,
@@ -205,29 +208,37 @@ export default function AdminCar() {
 
   const getAllCars = () => {
     instance.get('/vehicle/getAllVehicles/vehicles')
-    .then(function (response) {
-      console.log("hi hutto "+ response.data);
+      .then(function (response) {
+        console.log("hi hutto " + response.data);
 
-      const array = response.data.map((val)=>({
-        id:val.vehicleId,
-        brandName:val.brandName,
-        moduleName : val.moduleName,
-        passengers  : val.passengers,
-        fuelType : val.fuelType,
-        tmType : val.transmissionType,
-        drPrice :"Rs." +  val.dailyRentalPrice + ".00",
-        dlimet : val.dailyLimitKilometers + " Km",
-        extraKm:"Rs." + val.extraKm  + ".00",
-        status : val.status
+        const array = response.data.map((val) => ({
+          id: val.vehicleId,
+          brandName: val.brandName,
+          moduleName: val.moduleName,
+          passengers: val.passengers,
+          fuelType: val.fuelType,
+          tmType: val.transmissionType,
+          drPrice: "Rs." + val.dailyRentalPrice + ".00",
+          dlimet: val.dailyLimitKilometers + " Km",
+          extraKm: "Rs." + val.extraKm + ".00",
+          status: val.status
 
-      }))
+        }))
 
-console.log(array);
-setData(array)
-    })
-    .catch(function (error) {
-      console.error("Error fetching data:", error);
-    });
+        console.log(array);
+        setData(array)
+      })
+      .catch(function (error) {
+        console.error("Error fetching data:", error);
+      });
+  }
+
+  const clickOpen = () => {
+    setOpen(true)
+  }
+
+  const clickClose = () => {
+    setOpen(false)
   }
 
   return (
@@ -369,10 +380,15 @@ setData(array)
                 paginationModel: { page: 0, pageSize: 10 },
               },
             }}
-            pageSizeOptions={[10,20]}
+            pageSizeOptions={[10, 20]}
             checkboxSelection
           />
         </div>
+
+        <DiologBoxCommon open={open} clickOpen={clickOpen} clickClose={clickClose}/>
+
+        
+
       </Box>
     </Box>
   )

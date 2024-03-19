@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import DateTime from '../common/DateTime/DateTime'
 import AllCustomers from '../pages/AllCustomers/AllCustomers'
 import AdminCar from '../pages/AdminCar/AdminCar'
+import DiologBoxCommon from '../common/DiologBoxCommon/DiologBoxCommon'
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <>
-      {
+      {/* {
         login ?
           <DrawerNav />
           :
@@ -32,8 +33,10 @@ function App() {
             <Route path={'/home'} element={<Home />} />
             <Route path={'/loginPage'} element={<LogInPage />} />
           </Routes>
-      }
-      {/* <AdminCar/> */}
+      } */}
+
+
+      <AdminCar/>
     </>
   );
 }
