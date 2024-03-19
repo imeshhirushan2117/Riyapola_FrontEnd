@@ -27,9 +27,7 @@ export default function AdminCar() {
   const [drPrice, setDrPrice] = useState("4500")
   const [dlimet, setDlimet] = useState("100")
   const [extraKm, setExtraKm] = useState("45")
-  const [traveled, setTraveled] = useState("23000")
   const [status, setStatus] = useState("")
-
   const [data ,  setData] = useState ([])
 
   useEffect (()=>{
@@ -60,7 +58,7 @@ export default function AdminCar() {
     { label: 'Manual', value: 'Manual' }
   ]
 
-  const avty = [
+  const sts = [
     { label: 'Available', value: 'Available' },
     { label: 'Not Available', value: 'Not Available' }
   ]
@@ -87,7 +85,6 @@ export default function AdminCar() {
     { field: 'drPrice', headerName: 'Daily Rental Price', width: 150 },
     { field: 'dlimet', headerName: 'Daily Limit Kilometers', width: 170 },
     { field: 'extraKm', headerName: 'Extra Km', width: 150 },
-    { field: 'traveled', headerName: 'Kilometers Traveled', width: 150 },
     { field: 'status', headerName: 'Status', width: 150 },
     {
       field: 'actions',
@@ -117,7 +114,7 @@ export default function AdminCar() {
 
   const save = () => {
 
-    if (brandName && moduleName && passenger && fulType && tmType && drPrice && dlimet && extraKm && traveled && status != null){
+    if (brandName && moduleName && passenger && fulType && tmType && drPrice && dlimet && extraKm  && status != null){
       instance.post('/vehicle/saveVehicle', {
         brandName: brandName ? brandName.toUpperCase() : null,
         moduleName: moduleName ? moduleName.toUpperCase() : null,
@@ -126,8 +123,7 @@ export default function AdminCar() {
         transmissionType: tmType,
         dailyRentalPrice: drPrice,
         dailyLimitKilometers: dlimet,
-        extraKm: extraKm,
-        kilometersTraveled: traveled,
+        extraKm:extraKm,
         status: status,
       })
         .then(function (response) {
@@ -149,7 +145,6 @@ export default function AdminCar() {
         timer: 1500
       });
     }
- 
   }
 
   const alert = (icon , title) => {
@@ -188,10 +183,9 @@ export default function AdminCar() {
         passengers  : val.passengers,
         fuelType : val.fuelType,
         tmType : val.transmissionType,
-        drPrice : val.dailyRentalPrice,
-        dlimet : val.dailyLimitKilometers,
-        extraKm:val.extraKm,
-        traveled:val.kilometersTraveled,
+        drPrice :"Rs." +  val.dailyRentalPrice + ".00",
+        dlimet : val.dailyLimitKilometers + " Km",
+        extraKm:"Rs." + val.extraKm  + ".00",
         status : val.status
 
       }))
@@ -292,16 +286,10 @@ setData(array)
 
           <Grid item xs={2}>
             <Box>
-              <TextInput width={"100%"} label={"Kilometers Traveled"} value={traveled} type={'text'} onChange={(val) => setTraveled(val.target.value)} />
-            </Box>
-          </Grid>
-
-          <Grid item xs={2}>
-            <Box>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
-                options={avty}
+                options={sts}
                 sx={{ width: '100%' }}
                 value={status}
                 renderInput={(params) => <TextField {...params} label="Availability" />}
