@@ -38,7 +38,6 @@ export default function AdminCar() {
     { label: '8', value: '8' },
     { label: '9', value: '9' },
     { label: '10', value: '10' },
-
   ]
 
   const fuelType = [
@@ -112,7 +111,9 @@ export default function AdminCar() {
 
 
   const save = () => {
-      console.log("Save : " + brandName,moduleName,passenger,fulType,tmType,drPrice,extraKm,traveled,availability );
+      // console.log("Save : " + brandName,moduleName,passenger,fulType,tmType,drPrice,extraKm,traveled,availability );
+
+      console.log(traveled + " Km");
   }
 
   const clear = () => {
@@ -140,53 +141,53 @@ export default function AdminCar() {
 
       <Box>
         <Grid container spacing={2}>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Box>
               <TextInput width={"100%"} label={"Brand Name"} type={'text'} value={brandName} onChange={(val) => setBrandName(val.target.value)} />
             </Box>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Box>
               <TextInput width={"100%"} label={"Module Name"} type={'text'} value={moduleName} onChange={(val) => setModuleName(val.target.value)} />
             </Box>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Box>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
                 options={numberOfSeats}
                 value={passenger}
-                sx={{ width: 360 }}
+                sx={{ width: '100%' }}
                 renderInput={(params) => <TextField {...params} label="Number Of Passengers" />}
                 onChange={(event, value) => setPassenger(value.value)}
               />
             </Box>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Box>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
                 options={fuelType}
                 value={fulType}
-                sx={{ width: 360 }}
+                sx={{ width: '100%' }}
                 renderInput={(params) => <TextField {...params} label="Fuel Type" />}
                 onChange={(event, value) => setFulType(value.value)}
               />
             </Box>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Box>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
                 options={type}
-                sx={{ width: 360, }}
+                sx={{ width: '100%' }}
                 value={tmType}
                 renderInput={(params) => <TextField {...params} label="Transmission Type" />}
                 onChange={(event, value) => setTmType(value.value)}
@@ -194,31 +195,31 @@ export default function AdminCar() {
             </Box>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Box>
               <TextInput width={"100%"} label={"Daily Rental Price"} value={drPrice} type={'text'} onChange={(val) => setDrPrice(val.target.value)} />
             </Box>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Box>
               <TextInput width={"100%"} label={"Extra Km Tax"} type={'text'} value={extraKm} onChange={(val) => setExtraKm(val.target.value)} />
             </Box>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Box>
               <TextInput width={"100%"} label={"Kilometers Traveled"} value={traveled} type={'text'} onChange={(val) => setTraveled(val.target.value)} />
             </Box>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Box>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
                 options={avty}
-                sx={{ width: 360, }}
+                sx={{ width: '100%' }}
                 value={availability}
                 renderInput={(params) => <TextField {...params} label="Availability" />}
                 onChange={(event, value) => setAvailability(value.value)}
@@ -226,7 +227,7 @@ export default function AdminCar() {
             </Box>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Box>
               <Button
                 component="label"

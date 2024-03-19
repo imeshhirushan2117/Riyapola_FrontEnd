@@ -231,7 +231,7 @@ export default function AdminAction({}) {
                 disablePortal
                 id="combo-box-demo"
                 options={[{ label: "Admin", value: "Admin" }]}
-                sx={{ width: 300 }}
+                sx={{ width: '100%' }}
                 renderInput={(params) => <TextField {...params} label="Role" />}
                 value={role}
                 onChange={(event, value) => setRole(value.value)}
