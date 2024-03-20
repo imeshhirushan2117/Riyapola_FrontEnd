@@ -20,18 +20,19 @@ import DiologBoxCommon from '../../common/DiologBoxCommon/DiologBoxCommon';
 
 export default function AdminCar() {
 
-  const [brandName, setBrandName] = useState("sample")
-  const [moduleName, setModuleName] = useState("sample")
+  const [brandName, setBrandName] = useState("")
+  const [moduleName, setModuleName] = useState("")
   const [passenger, setPassenger] = useState("")
   const [fulType, setFulType] = useState("")
   const [tmType, setTmType] = useState("")
-  const [drPrice, setDrPrice] = useState("4500")
-  const [dlimet, setDlimet] = useState("100")
-  const [extraKm, setExtraKm] = useState("45")
+  const [drPrice, setDrPrice] = useState("")
+  const [dlimet, setDlimet] = useState("")
+  const [extraKm, setExtraKm] = useState("")
   const [status, setStatus] = useState("")
   const [data, setData] = useState([])
 
   const [open, setOpen] = useState(false);
+  const [updateData, setUpdateData] = useState()
 
 
   useEffect(() => {
@@ -239,6 +240,10 @@ export default function AdminCar() {
 
   const clickClose = () => {
     setOpen(false)
+  }
+
+  const update = () => {
+    console.log("update");
   }
 
   return (
@@ -486,7 +491,7 @@ export default function AdminCar() {
                 </Box>
 
                 <Box>
-                  <MyButton name={"Update"} width={"200px"} background={'#16a085'} hoverColor={"#1abc9c"} onClick={save} />
+                  <MyButton name={"Update"} width={"200px"} background={'#227093'} hoverColor={"#34ace0"} onClick={update} />
                 </Box>
               </Box>
 
