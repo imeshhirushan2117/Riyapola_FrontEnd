@@ -3,7 +3,7 @@ import Dialog from '@mui/material/Dialog';
 import { Box } from '@mui/material';
 
 
-export default function DiologBoxCommon({ clickOpen, clickClose, open}) {
+export default function DiologBoxCommon({ clickOpen, clickClose, open, children }) {
 
 
     return (
@@ -12,6 +12,7 @@ export default function DiologBoxCommon({ clickOpen, clickClose, open}) {
                 open={open}
                 onClose={clickClose}
             >
+                {children}
             </Dialog>
         </React.Fragment>
     )
