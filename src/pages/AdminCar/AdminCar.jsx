@@ -20,7 +20,10 @@ import DiologBoxCommon from '../../common/DiologBoxCommon/DiologBoxCommon';
 
 export default function AdminCar() {
 
-  const [brandName, setBrandName] = useState("")
+  const [updateData, setUpdateData] = useState()
+
+
+  const [brandName, setBrandName] = useState(updateData?.brandName)
   const [moduleName, setModuleName] = useState("")
   const [passenger, setPassenger] = useState("")
   const [fulType, setFulType] = useState("")
@@ -32,7 +35,7 @@ export default function AdminCar() {
   const [data, setData] = useState([])
 
   const [open, setOpen] = useState(false);
-  const [updateData, setUpdateData] = useState()
+
 
 
   useEffect(() => {
@@ -236,6 +239,8 @@ export default function AdminCar() {
 
   const clickOpen = () => {
     setOpen(true)
+   
+
   }
 
   const clickClose = () => {
