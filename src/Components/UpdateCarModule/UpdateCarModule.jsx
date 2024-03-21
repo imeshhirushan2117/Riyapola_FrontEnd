@@ -67,6 +67,7 @@ export default function UpdateCarModule({ open, close, updateData , canselBtn}) 
             .then((response) => {
                 console.log(response.data);
                 console.log("Update Done");
+                canselBtn()
             })
             .catch((error) => {
                 console.error(error);
@@ -172,7 +173,7 @@ export default function UpdateCarModule({ open, close, updateData , canselBtn}) 
 
                         <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: "20px", width: "100%", padding: "20px" }}>
                             <Box>
-                                <MyButton name={"Cansel"} width={"200px"} background={'#c0392b'} hoverColor={"#e74c3c"} onClick={canselBtn} />
+                                <MyButton name={"Cansel"} width={"200px"} background={'#A50010'} hoverColor={"#800A1E"} onClick={canselBtn} />
                             </Box>
 
                             <Box>

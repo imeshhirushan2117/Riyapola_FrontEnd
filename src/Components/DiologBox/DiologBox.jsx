@@ -37,6 +37,7 @@ export default function DiologBox({ handleClose, open, closeBtn, updateData }) {
                         text: "Your file has been updated.",
                         icon: "success"
                     });
+                    closeBtn()
                     
                 })
                 .catch((error) => {
@@ -50,6 +51,9 @@ export default function DiologBox({ handleClose, open, closeBtn, updateData }) {
             });
         }
     }
+
+
+    
     return (
         <Dialog
             open={open}

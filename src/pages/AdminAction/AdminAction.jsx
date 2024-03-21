@@ -187,6 +187,7 @@ export default function AdminAction({ }) {
 
   const closeBtn = () => {
     setOpen(false)
+    getAllAdmin()
   }
 
   return (

@@ -163,7 +163,6 @@ export default function AdminCar() {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-
         instance.delete('/vehicle/deletedVehicle/' + id, {
         })
           .then(response => {
@@ -233,12 +232,26 @@ export default function AdminCar() {
   }
 
   const clickOpen = (val) => {
-    setOpenPopup(true)
-    setUpdateData(val)
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to updated this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#16a085",
+      cancelButtonColor: "#A50010",
+      confirmButtonText: "Yes, update it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setOpenPopup(true)
+        setUpdateData(val)
+      }
+    });
   }
 
   const canselBtn = () => {
     setOpenPopup(false)
+    getAllCars()
   }
 
   return (
