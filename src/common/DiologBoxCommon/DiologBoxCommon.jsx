@@ -3,7 +3,7 @@ import Dialog from '@mui/material/Dialog';
 import { Box } from '@mui/material';
 
 
-export default function DiologBoxCommon({ clickOpen, clickClose, open, children }) {
+export default function DiologBoxCommon({ clickClose, open, children }) {
 
 
     return (
