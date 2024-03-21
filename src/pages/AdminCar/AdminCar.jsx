@@ -32,6 +32,7 @@ export default function AdminCar() {
   const [status, setStatus] = useState("")
   const [data, setData] = useState([])
   const [openPopup , setOpenPopup] = useState(false)
+  const [updateData, setUpdateData] = useState()
 
   useEffect(() => {
     getAllCars(setData)
@@ -234,16 +235,9 @@ export default function AdminCar() {
       });
   }
 
-  const clickOpen = () => {
+  const clickOpen = (val) => {
     setOpenPopup(true)
-  }
-
-  const clickClose = () => {
-    setOpen(false)
-  }
-
-  const update = () => {
-    console.log("update");
+    setUpdateData(val)
   }
 
   return (
@@ -254,7 +248,7 @@ export default function AdminCar() {
       </Box>
 
       <Box sx={{ textAlign: "center", fontSize: "30px", marginBottom: "40px", fontWeight: 'bold' }}>
-        Manage<samp style={{ color: "#A50010" }}> Vehial</samp>
+        Manage<samp style={{ color: "#A50010" }}> Vehicle</samp>
       </Box>
 
       <Box>
@@ -391,10 +385,14 @@ export default function AdminCar() {
         </div>
       </Box>
 
-      <UpdateCarModule
-      open={openPopup}
-      close={() => setOpenPopup(false)}
-      />
+      {openPopup &&
+       <UpdateCarModule
+       open={openPopup}
+       close={() => setOpenPopup(false)}
+       updateData={updateData}
+       />    
+      }
+     
     </Box>
   )
 }

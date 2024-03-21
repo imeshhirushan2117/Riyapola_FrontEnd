@@ -9,17 +9,17 @@ import instance from '../../services/Axios'
 import Swal from 'sweetalert2';
 import DiologBoxCommon from '../../common/DiologBoxCommon/DiologBoxCommon';
 
-export default function UpdateCarModule({open,close}) {
+export default function UpdateCarModule({open,close,updateData}) {
 
-    const [brandName, setBrandName] = useState("")
-    const [moduleName, setModuleName] = useState("")
-    const [passenger, setPassenger] = useState("")
-    const [fulType, setFulType] = useState("")
-    const [tmType, setTmType] = useState("")
-    const [drPrice, setDrPrice] = useState("")
-    const [dlimet, setDlimet] = useState("")
-    const [extraKm, setExtraKm] = useState("")
-    const [status, setStatus] = useState("")
+    const [brandName, setBrandName] = useState(updateData?.brandName)
+    const [moduleName, setModuleName] = useState(updateData?.moduleName)
+    const [passenger, setPassenger] = useState(updateData?.passengers)
+    const [fulType, setFulType] = useState(updateData?.fuelType)
+    const [tmType, setTmType] = useState(updateData?.tmType)
+    const [drPrice, setDrPrice] = useState(updateData?.drPrice)
+    const [dlimet, setDlimet] = useState(updateData?.dlimet)
+    const [extraKm, setExtraKm] = useState(updateData?.extraKm)
+    const [status, setStatus] = useState(updateData?.status)
    
 
     const numberOfSeats = [
@@ -51,21 +51,14 @@ export default function UpdateCarModule({open,close}) {
         { label: 'Not Available', value: 'Not Available' }
       ]
     
-const update = () => {}
 
-const clear = () => {
-    setBrandName("")
-    setModuleName("")
-    setPassenger("")
-    setFulType("")
-    setTmType("")
-    setDrPrice("")
-    setDlimet("")
-    setExtraKm("")
-    setTraveled("")
-    setStatus("")
+const cansel = () => {
+    console.log("cansel BUttn");
   }
 
+  const updateBtn = () => {
+console.log("update BUttn");
+  }
 
     return (
         <>
@@ -166,11 +159,11 @@ const clear = () => {
 
                         <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: "20px", width: "100%", padding: "20px" }}>
                             <Box>
-                                <MyButton name={"Clear"} width={"200px"} background={'#f39c12'} hoverColor={"#f1c40f"} onClick={clear} />
+                                <MyButton name={"Clear"} width={"200px"} background={'#f39c12'} hoverColor={"#f1c40f"} onClick={cansel} />
                             </Box>
 
                             <Box>
-                                <MyButton name={"Update"} width={"200px"} background={'#227093'} hoverColor={"#34ace0"} onClick={update} />
+                                <MyButton name={"Update"} width={"200px"} background={'#227093'} hoverColor={"#34ace0"} onClick={updateBtn} />
                             </Box>
                         </Box>
 

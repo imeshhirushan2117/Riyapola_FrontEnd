@@ -17,7 +17,6 @@ import DateTime from '../../common/DateTime/DateTime';
 
 export default function AdminAction({ }) {
 
-
   const [data, setData] = useState([])
   const [open, setOpen] = useState(false);
 
