@@ -21,7 +21,6 @@ export default function UpdateCarModule({ open, close, updateData , canselBtn}) 
     const [extraKm, setExtraKm] = useState(updateData?.extraKm)
     const [status, setStatus] = useState(updateData?.status)
 
-
     const numberOfSeats = [
         { label: '1', value: '1' },
         { label: '2', value: '2' },
