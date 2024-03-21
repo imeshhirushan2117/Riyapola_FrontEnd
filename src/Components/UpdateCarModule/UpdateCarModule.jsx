@@ -9,7 +9,7 @@ import instance from '../../services/Axios'
 import Swal from 'sweetalert2';
 import DiologBoxCommon from '../../common/DiologBoxCommon/DiologBoxCommon';
 
-export default function UpdateCarModule({open,close,updateData}) {
+export default function UpdateCarModule({ open, close, updateData , canselBtn}) {
 
     const [brandName, setBrandName] = useState(updateData?.brandName)
     const [moduleName, setModuleName] = useState(updateData?.moduleName)
@@ -20,7 +20,7 @@ export default function UpdateCarModule({open,close,updateData}) {
     const [dlimet, setDlimet] = useState(updateData?.dlimet)
     const [extraKm, setExtraKm] = useState(updateData?.extraKm)
     const [status, setStatus] = useState(updateData?.status)
-   
+
 
     const numberOfSeats = [
         { label: '1', value: '1' },
@@ -33,37 +33,50 @@ export default function UpdateCarModule({open,close,updateData}) {
         { label: '8', value: '8' },
         { label: '9', value: '9' },
         { label: '10', value: '10' },
-      ]
-    
-      const fuelType = [
+    ]
+
+    const fuelType = [
         { label: 'Petrol', value: 'Petrol' },
         { label: 'Diesel ', value: 'Diesel ' },
         { label: 'Hybrid', value: 'Hybrid' }
-      ]
-    
-      const type = [
+    ]
+
+    const type = [
         { label: 'Automic', value: 'Automic' },
         { label: 'Manual', value: 'Manual' }
-      ]
-    
-      const sts = [
+    ]
+
+    const sts = [
         { label: 'Available', value: 'Available' },
         { label: 'Not Available', value: 'Not Available' }
-      ]
-    
+    ]
 
-const cansel = () => {
-    console.log("cansel BUttn");
-  }
 
-  const updateBtn = () => {
-console.log("update BUttn");
-  }
+    const updateBtn = () => {
+        instance.put('/vehicle/updateVehicle/'+updateData.id, {
+            brandName: brandName ? brandName.toUpperCase() : null,
+            moduleName: moduleName ? moduleName.toUpperCase() : null,
+            passengers: passenger,
+            fuelType: fulType,
+            transmissionType: tmType,
+            dailyRentalPrice: drPrice,
+            dailyLimitKilometers: dlimet,
+            extraKm: extraKm,
+            status: status
+        })
+            .then((response) => {
+                console.log(response.data);
+                console.log("Update Done");
+            })
+            .catch((error) => {
+                console.error(error);
+                console.log("Update faild");
+            });
+    }
 
     return (
         <>
             <DiologBoxCommon open={open} clickClose={close} >
-
                 <Box sx={{ padding: "20px", width: "500px" }}>
                     <Grid container spacing={2}>
 
@@ -159,7 +172,7 @@ console.log("update BUttn");
 
                         <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: "20px", width: "100%", padding: "20px" }}>
                             <Box>
-                                <MyButton name={"Clear"} width={"200px"} background={'#f39c12'} hoverColor={"#f1c40f"} onClick={cansel} />
+                                <MyButton name={"Cansel"} width={"200px"} background={'#c0392b'} hoverColor={"#e74c3c"} onClick={canselBtn} />
                             </Box>
 
                             <Box>

@@ -136,7 +136,6 @@ export default function AdminCar() {
           console.log(response);
           getAllCars()
           alert("success", "Vehicle Save Success")
-
           clear()
         })
         .catch(function (error) {
@@ -211,8 +210,6 @@ export default function AdminCar() {
   const getAllCars = () => {
     instance.get('/vehicle/getAllVehicles/vehicles')
       .then(function (response) {
-        console.log("hi hutto " + response.data);
-
         const array = response.data.map((val) => ({
           id: val.vehicleId,
           brandName: val.brandName,
@@ -238,6 +235,10 @@ export default function AdminCar() {
   const clickOpen = (val) => {
     setOpenPopup(true)
     setUpdateData(val)
+  }
+
+  const canselBtn = () => {
+    setOpenPopup(false)
   }
 
   return (
@@ -390,6 +391,7 @@ export default function AdminCar() {
        open={openPopup}
        close={() => setOpenPopup(false)}
        updateData={updateData}
+       canselBtn={canselBtn}
        />    
       }
      
