@@ -26,7 +26,7 @@ export default function AdminCar() {
   const [passenger, setPassenger] = useState("")
   const [fulType, setFulType] = useState("")
   const [tmType, setTmType] = useState("")
-  const [drPrice, setDrPrice] = useState("")
+  const [drPrice, setDrPrice] = useState("Rs.")
   const [dlimet, setDlimet] = useState("")
   const [extraKm, setExtraKm] = useState("")
   const [status, setStatus] = useState("")
@@ -402,7 +402,6 @@ export default function AdminCar() {
       {openPopup &&
        <UpdateCarModule
        open={openPopup}
-       close={() => setOpenPopup(false)}
        updateData={updateData}
        canselBtn={canselBtn}
        />    

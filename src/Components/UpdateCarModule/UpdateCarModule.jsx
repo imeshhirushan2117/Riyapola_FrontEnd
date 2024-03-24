@@ -10,7 +10,7 @@ import instance from '../../services/Axios'
 import Swal from 'sweetalert2';
 import DiologBoxCommon from '../../common/DiologBoxCommon/DiologBoxCommon';
 import { styled } from '@mui/material/styles';
-export default function UpdateCarModule({ open, close, updateData, canselBtn }) {
+export default function UpdateCarModule({ open, updateData, canselBtn }) {
 
     const [brandName, setBrandName] = useState(updateData?.brandName)
     const [moduleName, setModuleName] = useState(updateData?.moduleName)
@@ -99,7 +99,7 @@ export default function UpdateCarModule({ open, close, updateData, canselBtn }) 
 
     return (
         <>
-            <DiologBoxCommon open={open} clickClose={close} >
+            <DiologBoxCommon open={open} clickClose={canselBtn} >
                 <Box sx={{ padding: "20px", width: "500px" }}>
                     <Grid container spacing={2}>
 
