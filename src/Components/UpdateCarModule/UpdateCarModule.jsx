@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Box, } from '@mui/material'
+import { Box, Button } from '@mui/material'
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Grid from '@mui/material/Grid';
 import TextInput from '../../common/TextInput/TextInput';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -8,8 +9,8 @@ import MyButton from '../../common/Button/Button'
 import instance from '../../services/Axios'
 import Swal from 'sweetalert2';
 import DiologBoxCommon from '../../common/DiologBoxCommon/DiologBoxCommon';
-
-export default function UpdateCarModule({ open, close, updateData , canselBtn}) {
+import { styled } from '@mui/material/styles';
+export default function UpdateCarModule({ open, close, updateData, canselBtn }) {
 
     const [brandName, setBrandName] = useState(updateData?.brandName)
     const [moduleName, setModuleName] = useState(updateData?.moduleName)
@@ -20,6 +21,7 @@ export default function UpdateCarModule({ open, close, updateData , canselBtn}) 
     const [dlimet, setDlimet] = useState(updateData?.dlimet)
     const [extraKm, setExtraKm] = useState(updateData?.extraKm)
     const [status, setStatus] = useState(updateData?.status)
+
 
     const numberOfSeats = [
         { label: '1', value: '1' },
@@ -51,8 +53,21 @@ export default function UpdateCarModule({ open, close, updateData , canselBtn}) 
     ]
 
 
+    const VisuallyHiddenInput = styled('input')({
+        clip: 'rect(0 0 0 0)',
+        clipPath: 'inset(50%)',
+        height: 1,
+        overflow: 'hidden',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        whiteSpace: 'nowrap',
+        width: 1,
+    });
+
+
     const updateBtn = () => {
-        instance.put('/vehicle/updateVehicle/'+updateData.id, {
+        instance.put('/vehicle/updateVehicle/' + updateData.id, {
             brandName: brandName ? brandName.toUpperCase() : null,
             moduleName: moduleName ? moduleName.toUpperCase() : null,
             passengers: passenger,
@@ -65,12 +80,20 @@ export default function UpdateCarModule({ open, close, updateData , canselBtn}) 
         })
             .then((response) => {
                 console.log(response.data);
-                console.log("Update Done");
+                Swal.fire({
+                    title: "Updated!",
+                    text: "Your file has been updated.",
+                    icon: "success"
+                });
                 canselBtn()
             })
             .catch((error) => {
                 console.error(error);
-                console.log("Update faild");
+                Swal.fire({
+                    title: "Error!",
+                    text: "Your file has been deleted Faild.",
+                    icon: "error"
+                });
             });
     }
 
@@ -166,6 +189,23 @@ export default function UpdateCarModule({ open, close, updateData , canselBtn}) 
                                     renderInput={(params) => <TextField {...params} label="Availability" />}
                                     onChange={(event, value) => setStatus(value.value)}
                                 />
+                            </Box>
+                        </Grid>
+
+
+                        <Grid item xs={6}>
+                            <Box>
+                                <Button
+                                    component="label"
+                                    role={undefined}
+                                    variant="contained"
+                                    tabIndex={-1}
+                                    startIcon={<CloudUploadIcon />}
+                                    sx={{width:'100%'}}
+                                >
+                                    Upload Images
+                                    <VisuallyHiddenInput type="file" />
+                                </Button>
                             </Box>
                         </Grid>
 

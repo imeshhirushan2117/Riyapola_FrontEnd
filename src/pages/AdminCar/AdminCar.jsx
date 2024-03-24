@@ -127,7 +127,7 @@ export default function AdminCar() {
         passengers: passenger,
         fuelType: fulType,
         transmissionType: tmType,
-        dailyRentalPrice: drPrice,
+        dailyRentalPrice:drPrice,
         dailyLimitKilometers: dlimet,
         extraKm: extraKm,
         status: status,
@@ -216,9 +216,9 @@ export default function AdminCar() {
           passengers: val.passengers,
           fuelType: val.fuelType,
           tmType: val.transmissionType,
-          drPrice: "Rs." + val.dailyRentalPrice + ".00",
-          dlimet: val.dailyLimitKilometers + " Km",
-          extraKm: "Rs." + val.extraKm + ".00",
+          drPrice: val.dailyRentalPrice,
+          dlimet: val.dailyLimitKilometers,
+          extraKm:+ val.extraKm,
           status: val.status
 
         }))
