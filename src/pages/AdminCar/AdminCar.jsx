@@ -84,7 +84,7 @@ export default function AdminCar() {
   const columns = [
     { field: 'brandName', headerName: 'Brand Name', width: 150 },
     { field: 'moduleName', headerName: 'Module Name', width: 150 },
-    { field: 'passengers', headerName: 'Passengers', width: 150 },
+    { field: 'passengers', headerName: 'Sheet', width: 150 },
     { field: 'fuelType', headerName: 'Fuel Type', width: 150 },
     { field: 'tmType', headerName: 'Transmission Type', width: 150 },
     { field: 'drPrice', headerName: 'Daily Rental Price (Rs)', width: 170 },
@@ -288,7 +288,7 @@ export default function AdminCar() {
                 options={numberOfSeats}
                 value={passenger}
                 sx={{ width: '100%' }}
-                renderInput={(params) => <TextField {...params} label="Number Of Passengers" />}
+                renderInput={(params) => <TextField {...params} label="Sheet" />}
                 onChange={(event, value) => setPassenger(value.value)}
               />
             </Box>
