@@ -258,7 +258,7 @@ export default function AdminCar() {
     <Box>
 
       <Box sx={{ padding: "10px", textAlign: "end" }}>
-        <DateTime style={{ color: "#B9B9B9", fontSize: "17px" }} />
+        <DateTime style={{ color: "black", fontSize: "17px"  ,fontWeight:'bold'}} />
       </Box>
 
       <Box sx={{ textAlign: "center", fontSize: "30px", marginBottom: "40px", fontWeight: 'bold' }}>
