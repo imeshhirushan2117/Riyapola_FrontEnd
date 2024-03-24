@@ -10,6 +10,10 @@ import instance from '../../services/Axios'
 import Swal from 'sweetalert2';
 import DiologBoxCommon from '../../common/DiologBoxCommon/DiologBoxCommon';
 import { styled } from '@mui/material/styles';
+import InputAdornment from '@mui/material/InputAdornment';
+
+
+
 export default function UpdateCarModule({ open, updateData, canselBtn }) {
 
     const [brandName, setBrandName] = useState(updateData?.brandName)
@@ -161,20 +165,34 @@ export default function UpdateCarModule({ open, updateData, canselBtn }) {
 
                         <Grid item xs={6}>
                             <Box>
-                                <TextInput width={"100%"} label={"Daily Rental Price"} value={drPrice} type={'text'} onChange={(val) => setDrPrice(val.target.value)} />
+                                <TextInput width={"100%"} label={"Daily Rental Price"} value={drPrice} type={'text'} onChange={(val) => setDrPrice(val.target.value)} 
+                                 InputProps={{
+                                    startAdornment: <InputAdornment position="start">Rs.</InputAdornment>,
+                                }}
+
+                                />
                             </Box>
                         </Grid>
 
 
                         <Grid item xs={6}>
                             <Box>
-                                <TextInput width={"100%"} label={"Limit Kilometers"} value={dlimet} type={'text'} onChange={(val) => setDlimet(val.target.value)} />
+                                <TextInput width={"100%"} label={"Limit Kilometers"} value={dlimet} type={'text'} onChange={(val) => setDlimet(val.target.value)}
+                                
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">Km</InputAdornment>,
+                                }}
+                                />
                             </Box>
                         </Grid>
 
                         <Grid item xs={6}>
                             <Box>
-                                <TextInput width={"100%"} label={"Extra Km Tax"} type={'text'} value={extraKm} onChange={(val) => setExtraKm(val.target.value)} />
+                                <TextInput width={"100%"} label={"Extra Km Tax"} type={'text'} value={extraKm} onChange={(val) => setExtraKm(val.target.value)} 
+                                InputProps={{
+                                    startAdornment: <InputAdornment position="start">Rs.</InputAdornment>,
+                                }}
+                                />
                             </Box>
                         </Grid>
 

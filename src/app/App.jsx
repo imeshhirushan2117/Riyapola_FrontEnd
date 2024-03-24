@@ -10,6 +10,8 @@ import AllCustomers from '../pages/AllCustomers/AllCustomers'
 import AdminCar from '../pages/AdminCar/AdminCar'
 import DiologBoxCommon from '../common/DiologBoxCommon/DiologBoxCommon'
 
+import Temp from '../pages/Temp/Temp'
+
 function App() {
   const [login, setLogin] = useState(false);
 
@@ -36,7 +38,7 @@ function App() {
       }
 
 
-      {/* <AdminCar/> */}
+      {/* <Temp/> */}
     </>
   );
 }
