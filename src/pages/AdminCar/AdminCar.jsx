@@ -87,9 +87,9 @@ export default function AdminCar() {
     { field: 'passengers', headerName: 'Passengers', width: 150 },
     { field: 'fuelType', headerName: 'Fuel Type', width: 150 },
     { field: 'tmType', headerName: 'Transmission Type', width: 150 },
-    { field: 'drPrice', headerName: 'Daily Rental Price', width: 150 },
-    { field: 'dlimet', headerName: 'Daily Limit Kilometers', width: 170 },
-    { field: 'extraKm', headerName: 'Extra Km', width: 150 },
+    { field: 'drPrice', headerName: 'Daily Rental Price (Rs)', width: 170 },
+    { field: 'dlimet', headerName: 'Daily Limit Kilometers (Km)', width: 190 },
+    { field: 'extraKm', headerName: 'Extra Km (Rs)', width: 150 },
     { field: 'status', headerName: 'Status', width: 150 },
     {
       field: 'actions',
