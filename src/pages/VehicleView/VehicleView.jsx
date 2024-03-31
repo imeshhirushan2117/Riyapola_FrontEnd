@@ -1,10 +1,49 @@
 import React from 'react'
 import ViewCard from '../../common/ViewCard/ViewCard'
 import { Box } from '@mui/material'
+import instance from '../../services/Axios'
+import { useState, useEffect } from 'react'
+import img_temp1 from '../../assets/img/carViewImg1.jpg'
 export default function VehicleView() {
+
+
+  useEffect(() => {
+    getAllVehicleCard()
+  }, [])
+
+
+  const [data, setData] = useState([])
+
+  const getAllVehicleCard = () => {
+    instance.get('/vehicle/getAllVehicles/vehicles')
+      .then(function (response) {
+        setData(response.data)
+      })
+      .catch(function (error) {
+        console.error("Error fetching data:", error);
+      });
+  }
+
   return (
-    <Box sx={{padding:'20px'}}>
-      <ViewCard />
+    <Box sx={{ padding: '10px', display: 'flex', gap: '25px' , flexWrap:'wrap'}}>
+
+      {
+        data.map((val) => (
+          <ViewCard
+          img={img_temp1}
+            brandName={val.brandName}
+            moduleName={val.moduleName}
+            type={val.fuelType}
+            transmission={val.transmissionType}
+            seats={val.passengers}
+            drPrice={val.dailyRentalPrice}
+            limit={val.dailyLimitKilometers}
+            extraKm={val.extraKm}
+            status={val.status}
+
+          />
+        ))
+      }
     </Box>
   )
 }

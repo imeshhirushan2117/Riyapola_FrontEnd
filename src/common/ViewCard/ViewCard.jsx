@@ -1,53 +1,63 @@
 import React from 'react'
 import { Box, Card, Typography } from '@mui/material'
-import img_temp1 from '../../assets/img/carViewImg1.jpg'
 
-export default function ViewCard() {
+
+export default function ViewCard({ img, brandName, moduleName, type, transmission, seats, drPrice, limit, extraKm, status }) {
     return (
-        <Card sx={{ maxWidth: 360, padding: '10px' }}>
+        <Card sx={{
+            maxWidth: 360,
+            padding: '10px',
+            cursor: 'pointer',
+            
+            transition: 'transform 0.5s, box-shadow 0.5s',
+            ':hover': {
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+                transform: 'scale(1.05)',
+            }
+        }}>
             <Box sx={{ width: '100%' }}>
-                <img style={{ width: '100%', borderRadius: '10px' }} src={img_temp1} alt="" />
+                <img style={{ width: '100%', borderRadius: '10px' }} src={img} alt="" />
             </Box>
 
             <Box sx={{ padding: '20px' }}>
                 <Box sx={{ textAlign: 'center', paddingBottom: '15px' }}>
-                    <p style={{fontSize:'20px' , fontWeight:'bold'}}>MAHENDRA KUV 100</p>
+                    <p style={{ fontSize: '20px', fontWeight: 'bold' }}>{brandName} {moduleName}</p>
                 </Box>
 
-                <Box sx={{fontSize:'15px'}}>
+                <Box sx={{ fontSize: '15px' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '5px' }}>
                         <p>Fuel Type</p>
-                        <p>Desile</p>
+                        <p>{type}</p>
                     </Box>
 
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '5px' }}>
                         <p>Transmission Type</p>
-                        <p>Auto</p>
+                        <p>{transmission}</p>
                     </Box>
 
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '5px' }}>
                         <p>Seats</p>
-                        <p>6</p>
+                        <p>{seats}</p>
                     </Box>
 
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '5px' }}>
                         <p>Daily Rental Price</p>
-                        <p>Rs.6700</p>
+                        <p>Rs.{drPrice}</p>
                     </Box>
 
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '5px' }}>
                         <p>Daily Limit Kilometers</p>
-                        <p>100 Km</p>
+                        <p>{limit} Km</p>
                     </Box>
 
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', padding: '5px' }}>
                         <p>Extra Km</p>
-                        <p>Rs.45</p>
+                        <p>Rs.{extraKm}</p>
                     </Box>
                 </Box>
 
-                <Box sx={{ textAlign: 'center', paddingTop: '20px' , fontSize:'20px' ,  fontWeight:'bold'}}>
-                    <p style={{color:'#022E1F'}}>Available</p>
+                <Box sx={{ textAlign: 'center', paddingTop: '20px', fontSize: '20px', fontWeight: 'bold' }}>
+                    <p style={{ color: '#007C00' }}>{status}</p>
                 </Box>
             </Box>
         </Card>
