@@ -9,7 +9,7 @@ import DateTime from '../common/DateTime/DateTime'
 import AllCustomers from '../pages/AllCustomers/AllCustomers'
 import AdminCar from '../pages/AdminCar/AdminCar'
 import DiologBoxCommon from '../common/DiologBoxCommon/DiologBoxCommon'
-
+import VehicleView from '../pages/VehicleView/VehicleView'
 import Temp from '../pages/Temp/Temp'
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      {
+      {/* {
         login ?
           <DrawerNav />
           :
@@ -35,10 +35,10 @@ function App() {
             <Route path={'/home'} element={<Home />} />
             <Route path={'/loginPage'} element={<LogInPage />} />
           </Routes>
-      }
+      } */}
 
 
-      {/* <Temp/> */}
+      <VehicleView/>
     </>
   );
 }
