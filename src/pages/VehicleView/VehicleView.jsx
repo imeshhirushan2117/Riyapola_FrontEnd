@@ -25,25 +25,35 @@ export default function VehicleView() {
   }
 
   return (
-    <Box sx={{ padding: '10px', display: 'flex', gap: '25px' , flexWrap:'wrap'}}>
 
-      {
-        data.map((val) => (
-          <ViewCard
-          img={img_temp1}
-            brandName={val.brandName}
-            moduleName={val.moduleName}
-            type={val.fuelType}
-            transmission={val.transmissionType}
-            seats={val.passengers}
-            drPrice={val.dailyRentalPrice}
-            limit={val.dailyLimitKilometers}
-            extraKm={val.extraKm}
-            status={val.status}
+    <>
 
-          />
-        ))
-      }
-    </Box>
+      <Box sx={{ textAlign: "center", fontSize: "30px", marginBottom: "40px", fontWeight: 'bold' }}>
+        Available<samp style={{ color: "#A50010" }}> Vehicles</samp>
+      </Box>
+
+
+      <Box sx={{ padding: '10px', display: 'flex', gap: '25px', flexWrap: 'wrap' }}>
+        {
+          data.map((val) => (
+            <ViewCard
+              img={img_temp1}
+              brandName={val.brandName}
+              moduleName={val.moduleName}
+              type={val.fuelType}
+              transmission={val.transmissionType}
+              seats={val.passengers}
+              drPrice={val.dailyRentalPrice}
+              limit={val.dailyLimitKilometers}
+              extraKm={val.extraKm}
+              status={val.status}
+
+            />
+          ))
+        }
+      </Box>
+
+    </>
+
   )
 }
