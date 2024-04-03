@@ -32,12 +32,12 @@ export default function AdminCar() {
   const [extraKm, setExtraKm] = useState("")
   const [status, setStatus] = useState("")
   const [data, setData] = useState([])
-  const [openPopup , setOpenPopup] = useState(false)
+  const [openPopup, setOpenPopup] = useState(false)
   const [updateData, setUpdateData] = useState()
 
   useEffect(() => {
     getAllCars(setData)
-  }, [])
+  },[])
 
   const numberOfSeats = [
     { label: '1', value: '1' },
@@ -100,8 +100,9 @@ export default function AdminCar() {
           <IconButton
             color='info'
             aria-label="edit"
-            onClick={() => { clickOpen(params.row) 
-          
+            onClick={() => {
+              clickOpen(params.row)
+
             }}
           >
             <EditIcon />
@@ -128,7 +129,7 @@ export default function AdminCar() {
         passengers: passenger,
         fuelType: fulType,
         transmissionType: tmType,
-        dailyRentalPrice:drPrice,
+        dailyRentalPrice: drPrice,
         dailyLimitKilometers: dlimet,
         extraKm: extraKm,
         status: status,
@@ -153,6 +154,10 @@ export default function AdminCar() {
     }
   }
 
+  const handleUpload = (event) => {
+   console.log(event.target.files[0]);
+  };
+  
   const deleted = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -219,7 +224,7 @@ export default function AdminCar() {
           tmType: val.transmissionType,
           drPrice: val.dailyRentalPrice,
           dlimet: val.dailyLimitKilometers,
-          extraKm:+ val.extraKm,
+          extraKm: + val.extraKm,
           status: val.status
 
         }))
@@ -255,11 +260,12 @@ export default function AdminCar() {
     getAllCars()
   }
 
+
   return (
     <Box>
 
       <Box sx={{ padding: "10px", textAlign: "end" }}>
-        <DateTime style={{ color: "black", fontSize: "17px"  ,fontWeight:'bold'}} />
+        <DateTime style={{ color: "black", fontSize: "17px", fontWeight: 'bold' }} />
       </Box>
 
       <Box sx={{ textAlign: "center", fontSize: "30px", marginBottom: "40px", fontWeight: 'bold' }}>
@@ -324,10 +330,10 @@ export default function AdminCar() {
 
           <Grid item xs={2}>
             <Box>
-              <TextInput width={"100%"} label={"Daily Rental Price"} value={drPrice} type={'text'} onChange={(val) => setDrPrice(val.target.value)} 
-              InputProps={{
-                startAdornment: <InputAdornment position="start">Rs.</InputAdornment>,
-            }}
+              <TextInput width={"100%"} label={"Daily Rental Price"} value={drPrice} type={'text'} onChange={(val) => setDrPrice(val.target.value)}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">Rs.</InputAdornment>,
+                }}
               />
             </Box>
           </Grid>
@@ -336,22 +342,22 @@ export default function AdminCar() {
           <Grid item xs={2}>
             <Box>
               <TextInput width={"100%"} label={"Limit Kilometers"} value={dlimet} type={'text'} onChange={(val) => setDlimet(val.target.value)}
-              
-              InputProps={{
-                endAdornment: <InputAdornment position="end">Km</InputAdornment>,
-            }}
+
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">Km</InputAdornment>,
+                }}
 
               />
-              
+
             </Box>
           </Grid>
 
           <Grid item xs={2}>
             <Box>
-              <TextInput width={"100%"} label={"Extra Km Tax"} type={'text'} value={extraKm} onChange={(val) => setExtraKm(val.target.value)} 
-              InputProps={{
-                startAdornment: <InputAdornment position="start">Rs.</InputAdornment>,
-            }}
+              <TextInput width={"100%"} label={"Extra Km Tax"} type={'text'} value={extraKm} onChange={(val) => setExtraKm(val.target.value)}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">Rs.</InputAdornment>,
+                }}
               />
             </Box>
           </Grid>
@@ -380,7 +386,7 @@ export default function AdminCar() {
                 startIcon={<CloudUploadIcon />}
               >
                 Upload Images
-                <VisuallyHiddenInput type="file" />
+                <VisuallyHiddenInput type="file" onChange={handleUpload} />
               </Button>
             </Box>
           </Grid>
@@ -416,13 +422,13 @@ export default function AdminCar() {
       </Box>
 
       {openPopup &&
-       <UpdateCarModule
-       open={openPopup}
-       updateData={updateData}
-       canselBtn={canselBtn}
-       />    
+        <UpdateCarModule
+          open={openPopup}
+          updateData={updateData}
+          canselBtn={canselBtn}
+        />
       }
-     
+
     </Box>
   )
 }

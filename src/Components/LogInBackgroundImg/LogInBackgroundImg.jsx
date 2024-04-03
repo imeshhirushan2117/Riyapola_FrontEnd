@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 export default function LogInBackgroundImg() {
 
     const [userName, setUserName] = useState("imesh@gmail.com")
-    const [password, setPassword] = useState("imesh1234")
+    const [password, setPassword] = useState("12345")
 
     const loginAdmin = () => {
 
