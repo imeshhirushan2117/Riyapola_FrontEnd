@@ -17,23 +17,18 @@ export default function VehicleView() {
     instance.get('/vehicle/getAllVehicles/vehicles')
       .then(function (response) {
         setData(response.data)
-        console.log(response.data);
+        console.log("-----> ", response.data[0].vehicleImgs[0].image);
+
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
       });
   }
 
-
   var items = [
     {
-        img: img1
+        img: "http://localhost:8080/uploads/peakpx.jpg"
     },
-
-    {
-        img: img2
-    },
-    
 ];
 
   return (
@@ -47,8 +42,9 @@ export default function VehicleView() {
       <Box sx={{ padding: '10px', display: 'flex', gap: '25px', flexWrap: 'wrap' }}>
         {
           data.map((val) => (
+          
             <ViewCard
-              img={val.vehicleImgs[0].image}
+              // img={val.vehicleImgs[0].image}
               brandName={val.brandName}
               moduleName={val.moduleName}
               type={val.fuelType}
@@ -60,6 +56,7 @@ export default function VehicleView() {
               status={val.status}
               items={items}
             />
+
           ))
         }
       </Box>

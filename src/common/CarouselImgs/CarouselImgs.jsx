@@ -5,7 +5,7 @@ import { Paper, Box } from '@mui/material';
 export default function CarouselImgs({ items , sx}) {
 
     return (
-        <Carousel sx={{maxWidth:'100%' , maxHeight:'140px'}}>
+        <Carousel sx={{maxWidth:'100%' , maxHeight:'100%'}}>
             {items.map((item, i) => (
                 <Paper key={i}>
                     <Box>
