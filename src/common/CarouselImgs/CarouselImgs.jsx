@@ -1,15 +1,15 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import { Paper , Box } from '@mui/material';
+import { Paper, Box } from '@mui/material';
 
-export default function CarouselImgs({ items }) {
+export default function CarouselImgs({ items , sx}) {
 
     return (
-        <Carousel>
+        <Carousel sx={{maxWidth:'100%' , maxHeight:'140px'}}>
             {items.map((item, i) => (
                 <Paper key={i}>
                     <Box>
-                        <img style={{ width: '100%', borderRadius: '10px' }} src={item.img} alt="" />
+                        <img style={{ maxWidth:'100%', borderRadius: '10px' }} src={item.img} alt="" />
                     </Box>
                 </Paper>
             ))}

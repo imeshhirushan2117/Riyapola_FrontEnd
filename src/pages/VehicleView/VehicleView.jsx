@@ -3,7 +3,9 @@ import ViewCard from '../../common/ViewCard/ViewCard'
 import { Box } from '@mui/material'
 import instance from '../../services/Axios'
 import { useState, useEffect } from 'react'
-import img_temp1 from '../../assets/img/carViewImg1.jpg'
+import img1 from '../../assets/img/carViewImg1.jpg'
+import img2 from '../../assets/img/carViewImg2.jpg'
+import CarouselImgs from '../../common/CarouselImgs/CarouselImgs'
 export default function VehicleView() {
 
 
@@ -25,6 +27,18 @@ export default function VehicleView() {
         console.error("Error fetching data:", error);
       });
   }
+
+
+  var items = [
+    {
+        img: img1
+    },
+
+    {
+        img: img2
+    },
+    
+];
 
   return (
 
@@ -48,6 +62,7 @@ export default function VehicleView() {
               limit={val.dailyLimitKilometers}
               extraKm={val.extraKm}
               status={val.status}
+              items={items}
             />
           ))
         }
