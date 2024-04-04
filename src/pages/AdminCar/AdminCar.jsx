@@ -34,6 +34,7 @@ export default function AdminCar() {
   const [data, setData] = useState([])
   const [openPopup, setOpenPopup] = useState(false)
   const [updateData, setUpdateData] = useState()
+  const [img, setImg] = useState("")
 
   useEffect(() => {
     getAllCars(setData)
@@ -123,16 +124,32 @@ export default function AdminCar() {
   const save = () => {
 
     if (brandName && moduleName && passenger && fulType && tmType && drPrice && dlimet && extraKm && status != null) {
-      instance.post('/vehicle/saveVehicle', {
-        brandName: brandName ? brandName.toUpperCase() : null,
-        moduleName: moduleName ? moduleName.toUpperCase() : null,
-        passengers: passenger,
-        fuelType: fulType,
-        transmissionType: tmType,
-        dailyRentalPrice: drPrice,
-        dailyLimitKilometers: dlimet,
-        extraKm: extraKm,
-        status: status,
+
+      const formData = new FormData()
+      formData.append('brandName',brandName ? brandName.toUpperCase() : null );
+      formData.append('moduleName', moduleName ? moduleName.toUpperCase() : null );
+      formData.append('passengers', passenger);
+      formData.append('fuelType', fulType);
+      formData.append('transmissionType', tmType);
+      formData.append('dailyRentalPrice', drPrice);
+      formData.append('dailyLimitKilometers', dlimet);
+      formData.append('extraKm', extraKm);
+      formData.append('status', status);
+      formData.append('image', img);
+
+      instance.post('/vehicle/saveVehicle', formData,{
+        headers: {
+          'Content-Type': 'multipart/form-data'
+      }
+        // brandName: brandName ? brandName.toUpperCase() : null,
+        // moduleName: moduleName ? moduleName.toUpperCase() : null,
+        // passengers: passenger,
+        // fuelType: fulType,
+        // transmissionType: tmType,
+        // dailyRentalPrice: drPrice,
+        // dailyLimitKilometers: dlimet,
+        // extraKm: extraKm,
+        // status: status,
       })
         .then(function (response) {
           console.log(response);
@@ -156,6 +173,7 @@ export default function AdminCar() {
 
   const handleUpload = (event) => {
    console.log(event.target.files[0]);
+   setImg(event.target.files[0])
   };
   
   const deleted = (id) => {
@@ -186,7 +204,6 @@ export default function AdminCar() {
       }
     });
   }
-
 
   const alert = (icon, title) => {
     Swal.fire({
@@ -386,7 +403,7 @@ export default function AdminCar() {
                 startIcon={<CloudUploadIcon />}
               >
                 Upload Images
-                <VisuallyHiddenInput type="file" onChange={handleUpload} />
+                <VisuallyHiddenInput type="file" onChange={handleUpload}/>
               </Button>
             </Box>
           </Grid>

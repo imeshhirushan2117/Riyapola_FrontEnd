@@ -5,14 +5,11 @@ import instance from '../../services/Axios'
 import { useState, useEffect } from 'react'
 import img1 from '../../assets/img/carViewImg1.jpg'
 import img2 from '../../assets/img/carViewImg2.jpg'
-import CarouselImgs from '../../common/CarouselImgs/CarouselImgs'
 export default function VehicleView() {
-
 
   useEffect(() => {
     getAllVehicleCard()
   }, [])
-
 
   const [data, setData] = useState([])
 
@@ -20,7 +17,6 @@ export default function VehicleView() {
     instance.get('/vehicle/getAllVehicles/vehicles')
       .then(function (response) {
         setData(response.data)
-
         console.log(response.data);
       })
       .catch(function (error) {
