@@ -1,8 +1,22 @@
 import React from 'react'
 import { Box, Card, Typography } from '@mui/material'
-
-
+import CarouselImgs from '../CarouselImgs/CarouselImgs'
+import img1 from '../../assets/img/carViewImg1.jpg'
+import img2 from '../../assets/img/carViewImg2.jpg'
 export default function ViewCard({ img, brandName, moduleName, type, transmission, seats, drPrice, limit, extraKm, status }) {
+
+
+    var items = [
+        {
+            img: img1
+        },
+
+        {
+            img: img2
+        },
+        
+    ];
+
     return (
         <Card sx={{
             maxWidth: 360,
@@ -16,7 +30,8 @@ export default function ViewCard({ img, brandName, moduleName, type, transmissio
             }
         }}>
             <Box sx={{ width: '100%' }}>
-                <img style={{ width: '100%', borderRadius: '10px' }} src={img} alt="" />
+                {/* <img style={{ width: '100%', borderRadius: '10px' }} src={img} alt="" /> */}
+                <CarouselImgs items={items}/>
             </Box>
 
             <Box sx={{ padding: '20px' }}>

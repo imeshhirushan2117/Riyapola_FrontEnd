@@ -28,7 +28,7 @@ function App() {
 
   return (
     <>
-      {/* {
+      {
         login ?
           <DrawerNav />
           :
@@ -37,9 +37,9 @@ function App() {
             <Route path={'/home'} element={<Home />} />
             <Route path={'/loginPage'} element={<LogInPage />} />
           </Routes>
-      } */}
+      }
       
-      <CarouselImgs/>
+      {/* <CarouselImgs/> */}
     </>
   );
 }
