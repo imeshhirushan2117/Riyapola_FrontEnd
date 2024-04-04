@@ -11,6 +11,8 @@ import AdminCar from '../pages/AdminCar/AdminCar'
 import DiologBoxCommon from '../common/DiologBoxCommon/DiologBoxCommon'
 import VehicleView from '../pages/VehicleView/VehicleView'
 import Temp from '../pages/Temp/Temp'
+import CarouselImgs from '../common/CarouselImgs/CarouselImgs'
+
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -26,7 +28,7 @@ function App() {
 
   return (
     <>
-      {
+      {/* {
         login ?
           <DrawerNav />
           :
@@ -35,9 +37,9 @@ function App() {
             <Route path={'/home'} element={<Home />} />
             <Route path={'/loginPage'} element={<LogInPage />} />
           </Routes>
-      }
+      } */}
       
-      {/* <VehicleView/> */}
+      <CarouselImgs/>
     </>
   );
 }

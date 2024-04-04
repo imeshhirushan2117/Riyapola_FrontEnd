@@ -18,6 +18,8 @@ export default function VehicleView() {
     instance.get('/vehicle/getAllVehicles/vehicles')
       .then(function (response) {
         setData(response.data)
+
+        console.log(response.data);
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
@@ -32,12 +34,11 @@ export default function VehicleView() {
         Available<samp style={{ color: "#A50010" }}> Vehicles</samp>
       </Box>
 
-
       <Box sx={{ padding: '10px', display: 'flex', gap: '25px', flexWrap: 'wrap' }}>
         {
           data.map((val) => (
             <ViewCard
-              img={img_temp1}
+              img={val.vehicleImgs[0].image}
               brandName={val.brandName}
               moduleName={val.moduleName}
               type={val.fuelType}
@@ -47,7 +48,6 @@ export default function VehicleView() {
               limit={val.dailyLimitKilometers}
               extraKm={val.extraKm}
               status={val.status}
-
             />
           ))
         }
