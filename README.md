@@ -1,8 +1,11 @@
-# React + Vite
+# Riyapola AdminPanel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img width="949" alt="1" src="https://github.com/imeshhirushan2117/Image_Uplode/assets/91472937/40d30f6e-eb76-409a-9e13-202d1e5e8b3c">
 
-Currently, two official plugins are available:
+<img width="944" alt="2" src="https://github.com/imeshhirushan2117/Image_Uplode/assets/91472937/427c16f9-23cd-4f99-9625-0aa5c21558f8">
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img width="960" alt="3" src="https://github.com/imeshhirushan2117/Riyapola_BackEnd/assets/91472937/a93ce674-36a4-4fe6-8f4f-a115a45b24d3">
+
+<img width="960" alt="4" src="https://github.com/imeshhirushan2117/Riyapola_BackEnd/assets/91472937/d4111af8-bf85-4874-99c8-3e20d2e609ef">
+
+<img width="956" alt="5" src="https://github.com/imeshhirushan2117/Riyapola_BackEnd/assets/91472937/bbf7af4c-2672-4d33-a089-82422031c655">
