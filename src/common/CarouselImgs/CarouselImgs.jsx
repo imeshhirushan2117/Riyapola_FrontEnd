@@ -2,7 +2,7 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Box } from '@mui/material';
 
-export default function CarouselImgs({ items , sx}) {
+export default function CarouselImgs({ items }) {
 
     return (
         <Carousel sx={{maxWidth:'100%' , maxHeight:'100%'}}>

@@ -141,15 +141,6 @@ export default function AdminCar() {
         headers: {
           'Content-Type': 'multipart/form-data'
       }
-        // brandName: brandName ? brandName.toUpperCase() : null,
-        // moduleName: moduleName ? moduleName.toUpperCase() : null,
-        // passengers: passenger,
-        // fuelType: fulType,
-        // transmissionType: tmType,
-        // dailyRentalPrice: drPrice,
-        // dailyLimitKilometers: dlimet,
-        // extraKm: extraKm,
-        // status: status,
       })
         .then(function (response) {
           console.log(response);
@@ -232,6 +223,7 @@ export default function AdminCar() {
   const getAllCars = () => {
     instance.get('/vehicle/getAllVehicles/vehicles')
       .then(function (response) {
+        console.log(response.data[0].vehicleImgs[0].image);
         const array = response.data.map((val) => ({
           id: val.vehicleId,
           brandName: val.brandName,
@@ -241,12 +233,9 @@ export default function AdminCar() {
           tmType: val.transmissionType,
           drPrice: val.dailyRentalPrice,
           dlimet: val.dailyLimitKilometers,
-          extraKm: + val.extraKm,
-          status: val.status
-
+          extraKm: val.extraKm,
+          status: val.status,
         }))
-
-        console.log(array);
         setData(array)
       })
       .catch(function (error) {
@@ -255,7 +244,6 @@ export default function AdminCar() {
   }
 
   const clickOpen = (val) => {
-
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to updated this!",

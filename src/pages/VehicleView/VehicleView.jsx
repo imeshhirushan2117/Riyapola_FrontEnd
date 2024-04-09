@@ -27,9 +27,11 @@ export default function VehicleView() {
 
   var items = [
     {
-        img: "http://localhost:8080/uploads/peakpx.jpg"
+        img: "http://localhost:8080/uploads/car.jpeg"
     },
 ];
+
+const imageUrl = "http://localhost:8080/";
 
   return (
 
@@ -44,7 +46,7 @@ export default function VehicleView() {
           data.map((val) => (
           
             <ViewCard
-              // img={val.vehicleImgs[0].image}
+              // img={imageUrl.val.img}
               brandName={val.brandName}
               moduleName={val.moduleName}
               type={val.fuelType}
@@ -55,6 +57,7 @@ export default function VehicleView() {
               extraKm={val.extraKm}
               status={val.status}
               items={items}
+              // items={items(val[0].vehicleImgs[0].image , )}
             />
 
           ))

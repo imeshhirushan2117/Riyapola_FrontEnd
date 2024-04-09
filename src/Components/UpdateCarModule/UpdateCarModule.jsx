@@ -25,6 +25,7 @@ export default function UpdateCarModule({ open, updateData, canselBtn }) {
     const [dlimet, setDlimet] = useState(updateData?.dlimet)
     const [extraKm, setExtraKm] = useState(updateData?.extraKm)
     const [status, setStatus] = useState(updateData?.status)
+    const [img, setImg] = useState(updateData?.img)
 
 
     const numberOfSeats = [
@@ -71,19 +72,43 @@ export default function UpdateCarModule({ open, updateData, canselBtn }) {
 
 
     const updateBtn = () => {
-        instance.put('/vehicle/updateVehicle/' + updateData.id, {
-            brandName: brandName ? brandName.toUpperCase() : null,
-            moduleName: moduleName ? moduleName.toUpperCase() : null,
-            passengers: passenger,
-            fuelType: fulType,
-            transmissionType: tmType,
-            dailyRentalPrice: drPrice,
-            dailyLimitKilometers: dlimet,
-            extraKm: extraKm,
-            status: status
+
+    const formData = new FormData();
+
+    formData.append('brandName', updateData.brandName ? updateData.brandName.toUpperCase() : null);
+    formData.append('moduleName', updateData.moduleName ? updateData.moduleName.toUpperCase() : null);
+    formData.append('passengers', updateData.passenger);
+    formData.append('fuelType', updateData.fulType);
+    formData.append('transmissionType', updateData.tmType);
+    formData.append('dailyRentalPrice', updateData.drPrice);
+    formData.append('dailyLimitKilometers', updateData.dlimet);
+    formData.append('extraKm', updateData.extraKm);
+    formData.append('status', updateData.status);
+    formData.append('image', updateData.img);
+
+        // formData.append('brandName',brandName ? brandName.toUpperCase() : null );
+        // formData.append('moduleName', moduleName ? moduleName.toUpperCase() : null );
+        // formData.append('passengers', passenger);
+        // formData.append('fuelType', fulType);
+        // formData.append('transmissionType', tmType);
+        // formData.append('dailyRentalPrice', drPrice);
+        // formData.append('dailyLimitKilometers', dlimet);
+        // formData.append('extraKm', extraKm);
+        // formData.append('status', status);
+        // formData.append('image', img);
+
+        console.log("------------>",updateData.id);
+        console.log("------------>",updateData);
+
+        const url = 'http://localhost:8080/admin/vehicle/updateVehicle/' + updateData.id;
+
+        instance.put(url, formData , {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         })
             .then((response) => {
-                console.log(response.data);
+                console.log("-------respons data " + response.data);
                 Swal.fire({
                     title: "Updated!",
                     text: "Your file has been updated.",
@@ -93,13 +118,21 @@ export default function UpdateCarModule({ open, updateData, canselBtn }) {
             })
             .catch((error) => {
                 console.error(error);
+                canselBtn()
+
                 Swal.fire({
                     title: "Error!",
-                    text: "Your file has been deleted Faild.",
+                    text: "Your file has been Update Faild.",
                     icon: "error"
                 });
             });
     }
+
+  const handleUpload = (event) => {
+    console.log(event.target.files[0]);
+    setImg(event.target.files[0])
+   };
+   
 
     return (
         <>
@@ -222,7 +255,7 @@ export default function UpdateCarModule({ open, updateData, canselBtn }) {
                                     sx={{width:'100%'}}
                                 >
                                     Upload Images
-                                    <VisuallyHiddenInput type="file" />
+                                    <VisuallyHiddenInput type="file" nChange={handleUpload}/>
                                 </Button>
                             </Box>
                         </Grid>
