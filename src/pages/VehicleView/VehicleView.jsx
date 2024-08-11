@@ -47,6 +47,7 @@ const imageUrl = "http://localhost:8080/";
           
             <ViewCard
               // img={imageUrl.val.img}
+              img={img1}
               brandName={val.brandName}
               moduleName={val.moduleName}
               type={val.fuelType}
@@ -56,7 +57,7 @@ const imageUrl = "http://localhost:8080/";
               limit={val.dailyLimitKilometers}
               extraKm={val.extraKm}
               status={val.status}
-              items={items}
+              // items={img1}
               // items={items(val[0].vehicleImgs[0].image , )}
             />
 

@@ -7,7 +7,6 @@ export default function ViewCard({ img, brandName, moduleName, type, transmissio
 
     return (
         <Card sx={{
-
             maxWidth: '100%',
             padding: '10px',
             cursor: 'pointer',
@@ -19,8 +18,8 @@ export default function ViewCard({ img, brandName, moduleName, type, transmissio
             }
         }}>
             <Box sx={{ width: '100%' }}>
-                {/* <img style={{ width: '100%', borderRadius: '10px' }} src={img} alt="" /> */}
-                <CarouselImgs items={items}/>
+                <img style={{ width: '350px', borderRadius: '10px' }} src={img} alt="" />
+                {/* <CarouselImgs items={items}/> */}
             </Box>
 
             <Box sx={{ padding: '20px' }}>
