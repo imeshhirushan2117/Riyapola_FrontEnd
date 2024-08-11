@@ -220,28 +220,66 @@ export default function AdminCar() {
   }
 
 
+  // const getAllCars = () => {
+  //   instance.get('/vehicle/getAllVehicles/vehicles')
+  //     .then(function (response) {
+  //       console.log(response.data[0].vehicleImgs[0].image);
+  //       const array = response.data.map((val) => ({
+  //         id: val.vehicleId,
+  //         brandName: val.brandName,
+  //         moduleName: val.moduleName,
+  //         passengers: val.passengers,
+  //         fuelType: val.fuelType,
+  //         tmType: val.transmissionType,
+  //         drPrice: val.dailyRentalPrice,
+  //         dlimet: val.dailyLimitKilometers,
+  //         extraKm: val.extraKm,
+  //         status: val.status,
+    
+  //       }))
+  //       setData(array)
+  //     })
+  //     .catch(function (error) {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }
+
+
   const getAllCars = () => {
     instance.get('/vehicle/getAllVehicles/vehicles')
       .then(function (response) {
-        console.log(response.data[0].vehicleImgs[0].image);
-        const array = response.data.map((val) => ({
-          id: val.vehicleId,
-          brandName: val.brandName,
-          moduleName: val.moduleName,
-          passengers: val.passengers,
-          fuelType: val.fuelType,
-          tmType: val.transmissionType,
-          drPrice: val.dailyRentalPrice,
-          dlimet: val.dailyLimitKilometers,
-          extraKm: val.extraKm,
-          status: val.status,
-        }))
-        setData(array)
+        if (response.data && response.data.length > 0) {
+          response.data.forEach(car => {
+            if (car.vehicleImgs && car.vehicleImgs.length > 0 && car.vehicleImgs[0].image) {
+              console.log(car.vehicleImgs[0].image);
+            } else {
+              console.log('Image not available for this vehicle.');
+            }
+          });
+  
+          const array = response.data.map((val) => ({
+            id: val.vehicleId,
+            brandName: val.brandName,
+            moduleName: val.moduleName,
+            passengers: val.passengers,
+            fuelType: val.fuelType,
+            tmType: val.transmissionType,
+            drPrice: val.dailyRentalPrice,
+            dlimet: val.dailyLimitKilometers,
+            extraKm: val.extraKm,
+            status: val.status,
+          }));
+  
+          setData(array);
+        } else {
+          console.log('No vehicles found.');
+        }
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
       });
   }
+  
 
   const clickOpen = (val) => {
     Swal.fire({
